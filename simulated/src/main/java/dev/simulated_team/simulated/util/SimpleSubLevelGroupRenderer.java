@@ -121,7 +121,7 @@ public class SimpleSubLevelGroupRenderer {
 
                     blockPoseStack.pushPose();
                     blockPoseStack.translate(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-                    blockRenderer.renderSingleBlock(blockState, blockPoseStack, bufferSource, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+                    blockRenderer.renderSingleBlock(blockState, blockPoseStack, bufferSource, LightCoordsUtil.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
                     blockPoseStack.popPose();
                 }
             }

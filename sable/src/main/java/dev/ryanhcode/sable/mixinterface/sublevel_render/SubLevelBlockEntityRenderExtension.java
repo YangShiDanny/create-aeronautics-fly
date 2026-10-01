@@ -1,7 +1,7 @@
 package dev.ryanhcode.sable.mixinterface.sublevel_render;
 
 import net.minecraft.client.Camera;
-import net.minecraft.client.renderer.state.LevelRenderState;
+import net.minecraft.client.renderer.state.level.LevelRenderState;
 
 public interface SubLevelBlockEntityRenderExtension {
 

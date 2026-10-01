@@ -201,8 +201,8 @@ public abstract class LevelPlot {
      */
     public boolean contains(final double x, final double z) {
         final int logBlockSize = this.logSize + SectionPos.SECTION_BITS;
-        return x >= this.plotPos.x << logBlockSize  && x < (this.plotPos.x + 1) << logBlockSize
-                && z >= this.plotPos.z << logBlockSize  && z < (this.plotPos.z + 1) << logBlockSize;
+        return x >= this.plotPos.x() << logBlockSize  && x < (this.plotPos.x() + 1) << logBlockSize
+                && z >= this.plotPos.z() << logBlockSize  && z < (this.plotPos.z() + 1) << logBlockSize;
     }
 
     /**
@@ -223,46 +223,46 @@ public abstract class LevelPlot {
      * @return the minimum chunk position of the plot.
      */
     public ChunkPos getChunkMin() {
-        return new ChunkPos(this.plotPos.x << this.logSize, this.plotPos.z << this.logSize);
+        return new ChunkPos(this.plotPos.x() << this.logSize, this.plotPos.z() << this.logSize);
     }
 
     /**
      * @return the maximum chunk position of the plot.
      */
     public ChunkPos getChunkMax() {
-        return new ChunkPos(((this.plotPos.x + 1) << this.logSize) - 1, ((this.plotPos.z + 1) << this.logSize) - 1);
+        return new ChunkPos(((this.plotPos.x() + 1) << this.logSize) - 1, ((this.plotPos.z() + 1) << this.logSize) - 1);
     }
 
     /**
      * @return if the given chunk is within this plot.
      */
     public boolean contains(final ChunkPos chunk) {
-        return chunk.x >> this.logSize == this.plotPos.x && chunk.z >> this.logSize == this.plotPos.z;
+        return chunk.x() >> this.logSize == this.plotPos.x() && chunk.z() >> this.logSize == this.plotPos.z();
     }
 
     /**
      * @return the local chunk position inside the plot for a global chunk position
      */
     public ChunkPos toLocal(final ChunkPos global) {
-        return new ChunkPos(global.x - (this.plotPos.x << this.logSize), global.z - (this.plotPos.z << this.logSize));
+        return new ChunkPos(global.x() - (this.plotPos.x() << this.logSize), global.z() - (this.plotPos.z() << this.logSize));
     }
 
     /**
      * @return the global chunk position for a local chunk position inside the plot
      */
     public ChunkPos toGlobal(final ChunkPos local) {
-        return new ChunkPos(local.x + (this.plotPos.x << this.logSize), local.z + (this.plotPos.z << this.logSize));
+        return new ChunkPos(local.x() + (this.plotPos.x() << this.logSize), local.z() + (this.plotPos.z() << this.logSize));
     }
 
     /**
      * @return the chunk holder at the local position in the plot
      */
     public @Nullable PlotChunkHolder getChunkHolder(final ChunkPos local) {
-        if (local.x < 0 || local.x >= 1 << this.logSize || local.z < 0 || local.z >= 1 << this.logSize) {
+        if (local.x() < 0 || local.x() >= 1 << this.logSize || local.z() < 0 || local.z() >= 1 << this.logSize) {
             return null;
         }
 
-        return this.chunks[local.z << this.logSize | local.x];
+        return this.chunks[local.z() << this.logSize | local.x()];
     }
 
     /**
@@ -279,7 +279,7 @@ public abstract class LevelPlot {
         }
 
         this.loadedChunks.add(holder);
-        this.chunks[localChunkPos.z << this.logSize | localChunkPos.x] = holder;
+        this.chunks[localChunkPos.z() << this.logSize | localChunkPos.x()] = holder;
 
         this.updateBoundingBox();
     }
@@ -296,7 +296,7 @@ public abstract class LevelPlot {
      * @return the chunk at the global position in the center of the plot
      */
     public ChunkPos getCenterChunk() {
-        return new ChunkPos((this.plotPos.x << this.logSize) + (1 << (this.logSize - 1)), (this.plotPos.z << this.logSize) + (1 << (this.logSize - 1)));
+        return new ChunkPos((this.plotPos.x() << this.logSize) + (1 << (this.logSize - 1)), (this.plotPos.z() << this.logSize) + (1 << (this.logSize - 1)));
     }
 
     public Collection<PlotChunkHolder> getLoadedChunks() {
@@ -392,7 +392,7 @@ public abstract class LevelPlot {
             // One block of margin to prevent black face lighting at the edges of chunks
             final BlockPos offsetPos = blockPos.relative(direction, 2);
 
-            final ChunkPos globalChunk = new ChunkPos(offsetPos);
+            final ChunkPos globalChunk = ChunkPos.containing(offsetPos);
 
             if (this.getChunk(this.toLocal(globalChunk)) == null) {
                 // Add the chunk if it's missing

@@ -64,7 +64,7 @@ import dev.simulated_team.simulated.registrate.SimulatedRegistrate;
 import dev.simulated_team.simulated.registrate.SimDisplayRegistrations;
 import dev.simulated_team.simulated.registrate.simulated_tab.CreativeTabItemTransforms;
 import dev.simulated_team.simulated.service.SimBlockStateService;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;

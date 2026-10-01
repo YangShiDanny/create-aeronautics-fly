@@ -12,7 +12,7 @@ import com.zurrtum.create.client.AllSpecialTextures;
 import com.zurrtum.create.client.foundation.render.RenderTypes;
 import dev.simulated_team.simulated.Simulated;
 import net.minecraft.client.renderer.RenderStateShard;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.Identifier;

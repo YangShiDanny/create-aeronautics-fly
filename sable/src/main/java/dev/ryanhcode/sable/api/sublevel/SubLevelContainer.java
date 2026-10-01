@@ -162,7 +162,7 @@ public abstract class SubLevelContainer {
             if (subLevel.isRemoved()) {
                 final LevelPlot plot = subLevel.getPlot();
                 final ChunkPos plotPos = plot.plotPos;
-                this.removeSubLevel(plotPos.x - this.originX, plotPos.z - this.originZ, SubLevelRemovalReason.REMOVED);
+                this.removeSubLevel(plotPos.x() - this.originX, plotPos.z() - this.originZ, SubLevelRemovalReason.REMOVED);
             }
         }
     }
@@ -340,8 +340,8 @@ public abstract class SubLevelContainer {
      * @param pos the global chunk position
      */
     public @Nullable LevelPlot getPlot(final ChunkPos pos) {
-        final int plotX = (pos.x >> this.logPlotSize) - this.originX;
-        final int plotZ = (pos.z >> this.logPlotSize) - this.originZ;
+        final int plotX = (pos.x() >> this.logPlotSize) - this.originX;
+        final int plotZ = (pos.z() >> this.logPlotSize) - this.originZ;
 
         return this.getLocalPlot(plotX, plotZ);
     }
@@ -350,7 +350,7 @@ public abstract class SubLevelContainer {
      * @return if a global chunk position is within the plotgrid.
      */
     public boolean inBounds(final ChunkPos pos) {
-        return this.inBounds(pos.x, pos.z);
+        return this.inBounds(pos.x(), pos.z());
     }
 
     /**
@@ -388,8 +388,8 @@ public abstract class SubLevelContainer {
             return;
         }
 
-        final int plotX = (pos.x >> this.logPlotSize) - this.originX;
-        final int plotZ = (pos.z >> this.logPlotSize) - this.originZ;
+        final int plotX = (pos.x() >> this.logPlotSize) - this.originX;
+        final int plotZ = (pos.z() >> this.logPlotSize) - this.originZ;
 
         final LevelPlot plot = this.getLocalPlot(plotX, plotZ);
 
@@ -515,8 +515,8 @@ public abstract class SubLevelContainer {
      * @param reason   the reason for removal
      */
     public void removeSubLevel(final SubLevel subLevel, final SubLevelRemovalReason reason) {
-        final int x = subLevel.getPlot().plotPos.x - this.originX;
-        final int z = subLevel.getPlot().plotPos.z - this.originZ;
+        final int x = subLevel.getPlot().plotPos.x() - this.originX;
+        final int z = subLevel.getPlot().plotPos.z() - this.originZ;
         this.removeSubLevel(x, z, reason);
     }
 

@@ -2,7 +2,7 @@ package dev.eriksonn.aeronautics.mixin.render.iris;
 
 import dev.eriksonn.aeronautics.index.client.AeroRenderTypes;
 import net.irisshaders.iris.pipeline.WorldRenderingPhase;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

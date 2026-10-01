@@ -8,12 +8,12 @@ import dev.ryanhcode.sable.sublevel.ClientSubLevel;
 import dev.ryanhcode.sable.sublevel.SubLevel;
 import dev.ryanhcode.sable.sublevel.plot.LevelPlot;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Leashable;
 import net.minecraft.world.level.Level;
@@ -52,7 +52,7 @@ public abstract class EntityRendererMixin {
         // Re-merging plot-space block light here would bypass physical blocks
         // surrounding the sub-level (for example, a normal wool enclosure) and
         // make entities and first-person items glow through the enclosure.
-        return LightTexture.pack(LightTexture.block(original),
+        return LightCoordsUtil.pack(LightCoordsUtil.block(original),
                 sable$getSubLevelAccountedSkyLight(original, arg.level(), LightLayer.SKY, blockpos, lightProbePosition));
     }
 
@@ -70,7 +70,7 @@ public abstract class EntityRendererMixin {
     private static int sable$getSubLevelAccountedSkyLight(final int original, final Level instance, final LightLayer lightLayer, final BlockPos blockPos, final Vector3dc probePosition) {
         final Iterable<SubLevel> all = Sable.HELPER.getAllIntersecting(instance, new BoundingBox3d(blockPos));
 
-        int baseBrightness = original == -1 ? instance.getBrightness(lightLayer, blockPos) : LightTexture.sky(original);
+        int baseBrightness = original == -1 ? instance.getBrightness(lightLayer, blockPos) : LightCoordsUtil.sky(original);
         final BlockPos.MutableBlockPos localPosition = new BlockPos.MutableBlockPos();
         final BlockPos.MutableBlockPos heightmapPos = new BlockPos.MutableBlockPos();
         final Vector3d tempProbePosition = new Vector3d();

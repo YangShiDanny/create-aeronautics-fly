@@ -97,7 +97,7 @@ public class SubLevelHoldingChunkMap implements AutoCloseable {
     }
 
     public void updateChunkStatus(final ChunkPos chunkPos, final boolean loaded) {
-        final long key = chunkPos.toLong();
+        final long key = chunkPos.pack();
 
         if (!loaded) {
             this.chunksToUnload.add(key);
@@ -120,7 +120,7 @@ public class SubLevelHoldingChunkMap implements AutoCloseable {
             this.queuedUnloads.remove(chunkPos);
         }
 
-        final SubLevelHoldingChunk existingChunk = this.loadedHoldingChunks.get(chunkPos.toLong());
+        final SubLevelHoldingChunk existingChunk = this.loadedHoldingChunks.get(chunkPos.pack());
         if (existingChunk != null) {
             existingChunk.markKeepLoaded();
             return;

@@ -20,7 +20,7 @@ import dev.ryanhcode.offroad.content.blocks.rock_cutting_wheel.RockCuttingWheelB
 import dev.ryanhcode.offroad.content.blocks.wheel_mount.WheelMountBlock;
 import dev.ryanhcode.offroad.content.components.TireLike;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;

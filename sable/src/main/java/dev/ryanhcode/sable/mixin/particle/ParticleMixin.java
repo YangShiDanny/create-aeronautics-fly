@@ -17,8 +17,8 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
@@ -481,7 +481,7 @@ public abstract class ParticleMixin implements ParticleExtension {
 
         final BlockState state = this.level.getBlockState(pos);
         if (state.emissiveRendering(this.level, pos)) {
-            cir.setReturnValue(LightTexture.FULL_BRIGHT);
+            cir.setReturnValue(LightCoordsUtil.FULL_BRIGHT);
             return;
         }
 
@@ -576,7 +576,7 @@ public abstract class ParticleMixin implements ParticleExtension {
             blockLight = k;
         }
 
-        cir.setReturnValue(LightTexture.pack(blockLight, skyLight));
+        cir.setReturnValue(LightCoordsUtil.pack(blockLight, skyLight));
     }
 }
 

@@ -8,10 +8,10 @@ import dev.eriksonn.aeronautics.content.blocks.hot_air.GasEmitterRenderHandler;
 import dev.eriksonn.aeronautics.index.AeroPartialModels;
 import com.zurrtum.create.client.catnip.render.CachedBuffers;
 import com.zurrtum.create.client.catnip.render.SuperByteBuffer;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SteamVentRenderer extends SmartBlockEntityRenderer<SteamVentBlockEntity> {
@@ -47,13 +47,13 @@ public class SteamVentRenderer extends SmartBlockEntityRenderer<SteamVentBlockEn
             ms.pushPose();
 
             base.disableDiffuse()
-                    .light(LightTexture.FULL_BRIGHT)
+                    .light(LightCoordsUtil.FULL_BRIGHT)
                     .color(255, 255, 255, alpha)
                     .renderInto(ms.last(), translucentConsumer);
 
             ms.translate(0.0f, (position - 1) / 3.0f, 0.0f);
             jet.disableDiffuse()
-                    .light(LightTexture.FULL_BRIGHT)
+                    .light(LightCoordsUtil.FULL_BRIGHT)
                     .color(255, 255, 255, alpha)
                     .renderInto(ms.last(), translucentConsumer);
 

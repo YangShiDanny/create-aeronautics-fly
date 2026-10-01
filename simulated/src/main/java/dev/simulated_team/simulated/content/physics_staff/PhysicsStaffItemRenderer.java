@@ -15,9 +15,9 @@ import dev.simulated_team.simulated.util.SimDistUtil;
 import dev.simulated_team.simulated.util.SimMathUtils;
 import com.zurrtum.create.client.catnip.animation.AnimationTickHolder;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -104,8 +104,8 @@ public class PhysicsStaffItemRenderer extends CustomRenderedItemModelRenderer {
 
         renderer.render(model.getOriginalModel(), Sheets.cutoutBlockSheet(), light);
 
-        renderer.render(SimPartialModels.PHYSICS_STAFF_CORE.get(), SimRenderTypes.itemGlowingSolid(shadersActive), LightTexture.FULL_BRIGHT);
-        renderer.render(SimPartialModels.PHYSICS_STAFF_CORE_GLOW.get(), SimRenderTypes.itemGlowingTranslucent(shadersActive), LightTexture.FULL_BRIGHT);
+        renderer.render(SimPartialModels.PHYSICS_STAFF_CORE.get(), SimRenderTypes.itemGlowingSolid(shadersActive), LightCoordsUtil.FULL_BRIGHT);
+        renderer.render(SimPartialModels.PHYSICS_STAFF_CORE_GLOW.get(), SimRenderTypes.itemGlowingTranslucent(shadersActive), LightCoordsUtil.FULL_BRIGHT);
         final float worldTime = AnimationTickHolder.getRenderTime() / 20;
 
         ms.pushPose();
@@ -140,14 +140,14 @@ public class PhysicsStaffItemRenderer extends CustomRenderedItemModelRenderer {
         cubeScale = Mth.clamp(cubeScale, 0, 1);
         cubeScale *= 0.8f;
         ms.scale(cubeScale, cubeScale, cubeScale);
-        renderer.render(SimPartialModels.PHYSICS_STAFF_INNER_CUBE.get(), SimRenderTypes.itemGlowingSolid(shadersActive), LightTexture.FULL_BRIGHT);
+        renderer.render(SimPartialModels.PHYSICS_STAFF_INNER_CUBE.get(), SimRenderTypes.itemGlowingSolid(shadersActive), LightCoordsUtil.FULL_BRIGHT);
 
         if (context.firstPerson()) {
             captureFirstPersonFocus(ms, minecraft, partialTicks);
         }
 
         ms.scale(1.2f, 1.2f, 1.2f);
-        renderer.render(SimPartialModels.PHYSICS_STAFF_OUTER_CUBE.get(), SimRenderTypes.itemGlowingTranslucent(shadersActive), LightTexture.FULL_BRIGHT);
+        renderer.render(SimPartialModels.PHYSICS_STAFF_OUTER_CUBE.get(), SimRenderTypes.itemGlowingTranslucent(shadersActive), LightCoordsUtil.FULL_BRIGHT);
 
         // Iris doesn't allow individual render types to be ended, so all batches must be ended for the translucent parts to draw correctly
         if (OptionalShaderMods.isIrisLoaded() && !shadersActive) {

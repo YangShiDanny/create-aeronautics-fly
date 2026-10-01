@@ -375,7 +375,7 @@ public class SubLevelPhysicsSystem implements SubLevelObserver {
 
                 if (!section.hasOnlyAir()) {
                     final int sectionY = chunk.getSectionYFromSectionIndex(i);
-                    this.pipeline.handleChunkSectionAddition(section, global.x, sectionY, global.z, true);
+                    this.pipeline.handleChunkSectionAddition(section, global.x(), sectionY, global.z(), true);
                 }
             }
         }

@@ -18,15 +18,15 @@ import com.zurrtum.create.client.ponder.foundation.PonderScene;
 import com.zurrtum.create.client.ponder.foundation.element.AnimatedSceneElementBase;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.Camera;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.item.ItemModelResolver;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -134,7 +134,7 @@ public class RopeStrandElement extends AnimatedSceneElementBase implements Anima
             ps.mulPose(orientation);
             ps.translate(-0.5, -0.5, -0.5);
             final BlockPos pos = BlockPos.containing(globalRenderPos.x, globalRenderPos.y, globalRenderPos.z);
-            final int worldLight = LightTexture.FULL_BLOCK;
+            final int worldLight = LightCoordsUtil.pack(15, 0);
 
             knot.light(worldLight)
                     .renderInto(ps.last(), vb);

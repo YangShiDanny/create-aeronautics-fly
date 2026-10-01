@@ -57,7 +57,7 @@ public class SubLevelTrackingSystem implements SubLevelObserver {
     private static long getSubLevelLong(final ServerSubLevel subLevel, final SubLevelContainer subLevels) {
         final Vector2i origin = subLevels.getOrigin();
         final ChunkPos plotPos = subLevel.getPlot().plotPos;
-        return ChunkPos.asLong(plotPos.x - origin.x(), plotPos.z - origin.y);
+        return ChunkPos.pack(plotPos.x() - origin.x(), plotPos.z() - origin.y);
     }
 
     private boolean shouldLoad(final Player player, final Vector3dc entityPosition) {
