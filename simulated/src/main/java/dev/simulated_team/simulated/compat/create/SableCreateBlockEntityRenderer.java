@@ -264,7 +264,7 @@ public final class SableCreateBlockEntityRenderer {
                 final MovingBlockRenderState renderState
         ) {
             final int light = renderState.blockPos != null
-                    ? LevelRenderer.getLightColor(renderState, renderState.blockPos)
+                    ? LevelRenderer.getLightCoords(renderState, renderState.blockPos)
                     : this.fallbackLight;
             Minecraft.getInstance()
                     .getBlockRenderer()

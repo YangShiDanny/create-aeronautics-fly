@@ -90,7 +90,8 @@ public class LevelRendererMixin implements SubLevelBlockEntityRenderExtension {
             return;
         }
 
-        final Vec3 cameraPosition = camera.getPosition();
+        // PORT-NOTE(mc26.1): Camera#getPosition() was renamed Camera#position().
+        final Vec3 cameraPosition = camera.position();
         final BlockEntityRenderDispatcherExtension dispatcherExtension = (BlockEntityRenderDispatcherExtension) this.blockEntityRenderDispatcher;
 
         try (final EntityCullingCompat.Scope ignored = EntityCullingCompat.suspendBlockEntityCulling()) {
@@ -127,7 +128,7 @@ public class LevelRendererMixin implements SubLevelBlockEntityRenderExtension {
                             final Vector3d physicalCenter = subLevel.renderPose(partialTick).transformPosition(
                                     new Vector3d(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5)
                             );
-                            renderState.lightCoords = LevelRenderer.getLightColor(
+                            renderState.lightCoords = LevelRenderer.getLightCoords(
                                     this.level,
                                     BlockPos.containing(physicalCenter.x, physicalCenter.y, physicalCenter.z)
                             );

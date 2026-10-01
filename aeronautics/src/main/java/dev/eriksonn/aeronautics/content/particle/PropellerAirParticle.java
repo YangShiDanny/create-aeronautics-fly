@@ -110,9 +110,9 @@ public class PropellerAirParticle extends SimpleAnimatedParticle {
         }
     }
 
-    public int getLightColor(final float partialTick) {
+    public int getLightCoords(final float partialTick) {
         final BlockPos blockpos = new BlockPos((int) this.x, (int) this.y, (int) this.z);
-        return this.level.isLoaded(blockpos) ? LevelRenderer.getLightColor(this.level, blockpos) : 0;
+        return this.level.isLoaded(blockpos) ? LevelRenderer.getLightCoords(this.level, blockpos) : 0;
     }
 
     private void selectSprite(final int index) {

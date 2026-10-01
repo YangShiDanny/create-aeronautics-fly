@@ -17,6 +17,8 @@ import net.caffeinemc.mods.sodium.client.render.chunk.ChunkRenderMatrices;
 import net.caffeinemc.mods.sodium.client.render.viewport.Viewport;
 import net.caffeinemc.mods.sodium.client.util.FogParameters;
 import net.fabricmc.fabric.api.client.renderer.v1.Renderer;
+import net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter;
+import net.fabricmc.fabric.api.client.renderer.v1.render.AltModelBlockRenderer;
 import net.fabricmc.fabric.api.client.renderer.v1.render.ChunkSectionLayerHelper;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -24,13 +26,17 @@ import net.minecraft.client.PrioritizeChunkUpdates;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.block.BlockStateModelSet;
+import net.minecraft.client.renderer.block.dispatch.BlockStateModel;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayerGroup;
 import net.minecraft.client.renderer.chunk.RenderRegionCache;
-import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.state.level.LevelRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.BlockDestructionProgress;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -47,11 +53,24 @@ import java.util.SortedSet;
 /**
  * Bridges Sable sub-levels into Sodium's terrain render phases.
  *
- * <p>The 1.21.10 Iris/Sodium pipeline requires its own extended vertex format.
- * Sable's vanilla compiled section buffers are accepted by the GPU but discarded
- * by that shader pipeline. Render the sub-level blocks through Minecraft's
- * immediate block-model path instead; Iris decorates this path with the active
- * shader-pack vertex format just as it does for moving blocks.</p>
+ * <p>The Iris/Sodium pipeline requires its own extended vertex format. Sable's
+ * vanilla compiled section buffers are accepted by the GPU but discarded by that
+ * shader pipeline. Render the sub-level blocks through the block-model pipeline
+ * instead; Iris decorates the moving-block render types with the active
+ * shader-pack vertex format just as it does for pistons.</p>
+ *
+ * <p>PORT-NOTE(mc26.1): the immediate block-model entry point changed shape. The
+ * old FRAPI flow ({@code Renderer#render} plus a {@code BlockMultiBufferSource})
+ * no longer exists; it is now a two-step flow:</p>
+ * <ol>
+ *   <li>{@link AltModelBlockRenderer#tesselateBlock} tessellates a
+ *       {@link BlockStateModel} into {@link QuadEmitter} quads, preserving FRAPI
+ *       quad extensions, and</li>
+ *   <li>each emitted quad is written into the vanilla moving-block render types
+ *       via {@link ChunkSectionLayerHelper#getMovingBlockRenderType}.</li>
+ * </ol>
+ * <p>This mirrors how Fabric API itself drives the vanilla moving-block and
+ * section-compiler paths in 26.1.</p>
  */
 @Mixin(value = SodiumWorldRenderer.class, remap = false)
 public abstract class SodiumWorldRendererMixin {
@@ -147,14 +166,22 @@ public abstract class SodiumWorldRendererMixin {
 
         final Minecraft minecraft = Minecraft.getInstance();
         final MultiBufferSource.BufferSource bufferSource = minecraft.renderBuffers().bufferSource();
-        final BlockRenderDispatcher blockRenderer = minecraft.getBlockRenderer();
-        final Renderer fabricRenderer = Renderer.get();
+        // 26.1 deleted BlockRenderDispatcher (and Minecraft#getBlockRenderer); the
+        // block-state model table now lives on the model manager instead.
+        final BlockStateModelSet blockStateModelSet = minecraft.getModelManager().getBlockStateModelSet();
         final float partialTick = minecraft.getDeltaTracker().getGameTimeDeltaPartialTick(true);
 
+        final Renderer fabricRenderer = Renderer.get();
+        final AltModelBlockRenderer modelRenderer = fabricRenderer.altModelBlockRenderer(
+                minecraft.options.ambientOcclusion().get(),
+                minecraft.options.cutoutLeaves().get(),
+                minecraft.getBlockColors()
+        );
+
         // This injection runs from Sodium's opaque terrain draw, just before
-        // LevelRenderer normally selects the world-lighting UBO. The immediate
-        // block model pipeline consumes that UBO for directional face shading,
-        // so bind it here as well instead of inheriting stale GUI/item lights.
+        // LevelRenderer normally selects the world-lighting UBO. The block model
+        // pipeline consumes that UBO for directional face shading, so bind it
+        // here as well instead of inheriting stale GUI/item lights.
         minecraft.gameRenderer.getLighting().setupFor(Lighting.Entry.LEVEL);
 
         for (final ClientSubLevel subLevel : container.getAllSubLevels()) {
@@ -164,7 +191,6 @@ public abstract class SodiumWorldRendererMixin {
                     cameraX,
                     cameraY,
                     cameraZ,
-                    ChunkSectionLayerHelper.movingDelegate(bufferSource),
                     bufferSource
             );
             final SubLevelRenderData renderData = subLevel.getRenderData();
@@ -173,9 +199,12 @@ public abstract class SodiumWorldRendererMixin {
             final PoseStack poseStack = new PoseStack();
             poseStack.mulPose(renderData.getTransformation(cameraX, cameraY, cameraZ));
             final var bounds = subLevel.getPlot().getBoundingBox();
-            for (final BlockPos blockPos : BlockPos.betweenClosed(
+            for (final BlockPos plotPos : BlockPos.betweenClosed(
                     bounds.minX(), bounds.minY(), bounds.minZ(),
                     bounds.maxX(), bounds.maxY(), bounds.maxZ())) {
+                // betweenClosed reuses one mutable position, and the emitter
+                // callback below captures it, so take a stable copy.
+                final BlockPos blockPos = plotPos.immutable();
                 final BlockState blockState = this.level.getBlockState(blockPos);
                 if (blockState.isAir()) {
                     continue;
@@ -192,26 +221,46 @@ public abstract class SodiumWorldRendererMixin {
                 );
                 if (blockState.getRenderShape() == RenderShape.MODEL) {
                     // The terrain-like renderer computes AO and packed light for
-                    // every vertex. renderSingleBlock uses one light value for the
-                    // entire model, which makes nearby light sources visibly step
-                    // from one sub-level block to the next.
-                    fabricRenderer.render(
-                            blockRenderer.getModelRenderer(),
+                    // every vertex. Passing the level plus the real plot position
+                    // lets it sample the plot's light and tints, so nearby light
+                    // sources never step from one sub-level block to the next.
+                    final BlockStateModel blockStateModel = blockStateModelSet.get(blockState);
+                    final QuadEmitter emitter = fabricRenderer.quadEmitter(quad -> {
+                        if (quad.emissive()) {
+                            quad.lightmap(
+                                    LightCoordsUtil.FULL_BRIGHT, LightCoordsUtil.FULL_BRIGHT,
+                                    LightCoordsUtil.FULL_BRIGHT, LightCoordsUtil.FULL_BRIGHT
+                            );
+                        }
+
+                        final ChunkSectionLayer layer = quad.chunkLayer();
+                        final RenderType renderType = ChunkSectionLayerHelper.getMovingBlockRenderType(
+                                layer == null ? ChunkSectionLayer.SOLID : layer
+                        );
+                        // Writes all four vertices with this overlay; the pose is
+                        // evaluated here, while the block translation is applied.
+                        quad.buffer(
+                                OverlayTexture.NO_OVERLAY,
+                                poseStack.last(),
+                                blockBuffers.getBuffer(renderType)
+                        );
+                    });
+                    modelRenderer.tesselateBlock(
+                            emitter,
+                            0.0F,
+                            0.0F,
+                            0.0F,
                             this.level,
-                            blockRenderer.getBlockModel(blockState),
-                            blockState,
                             blockPos,
-                            poseStack,
-                            blockBuffers,
-                            true,
-                            blockState.getSeed(blockPos),
-                            OverlayTexture.NO_OVERLAY
+                            blockState,
+                            blockStateModel,
+                            blockState.getSeed(blockPos)
                     );
                 }
 
                 final BlockEntity blockEntity = this.level.getBlockEntity(blockPos);
                 if (blockEntity != null && !blockEntity.isRemoved()) {
-                    final int plotLight = LevelRenderer.getLightColor(this.level, blockPos);
+                    final int plotLight = LevelRenderer.getLightCoords(this.level, blockPos);
                     SubLevelBlockEntityRenderRegistry.render(
                             blockEntity,
                             partialTick,

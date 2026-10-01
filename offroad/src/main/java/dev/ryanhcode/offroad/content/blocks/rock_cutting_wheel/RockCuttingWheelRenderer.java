@@ -50,7 +50,7 @@ public class RockCuttingWheelRenderer extends SafeBlockEntityRenderer<RockCuttin
         transformBuffer(facing, state.getValue(AbstractDirectionalAxisBlock.AXIS_ALONG_FIRST_COORDINATE), wheel);
         wheel.rotateYCenteredDegrees(((LerpedFloat) context.temporaryData).getValue(AnimationTickHolder.getPartialTicks(context.world)));
 
-        wheel.light(LevelRenderer.getLightColor(renderWorld, context.localPos))
+        wheel.light(LevelRenderer.getLightCoords(renderWorld, context.localPos))
                 .useLevelLight(context.world, matrices.getWorld())
                 .renderInto(matrices.getViewProjection().last(), buffer.getBuffer(RenderType.solid()));
     }

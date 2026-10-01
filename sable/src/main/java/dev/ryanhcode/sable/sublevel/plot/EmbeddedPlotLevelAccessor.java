@@ -1,7 +1,6 @@
 package dev.ryanhcode.sable.sublevel.plot;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.particles.ParticleOptions;
@@ -11,6 +10,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.attribute.EnvironmentAttributeReader;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.flag.FeatureFlagSet;
@@ -85,10 +85,9 @@ public class EmbeddedPlotLevelAccessor implements CommonLevelAccessor, ServerLev
         return this.level.getLightEngine();
     }
 
-    @Override
-    public float getShade(final Direction direction, final boolean shade) {
-        return this.level.getShade(direction, shade);
-    }
+    // PORT-NOTE(mc26.1): Level#getShade(Direction, boolean) is gone. Directional
+    // face shading now lives behind BlockAndTintGetter#cardinalLighting(), which
+    // this accessor does not implement, so the override was dropped entirely.
 
     @Override
     public WorldBorder getWorldBorder() {
@@ -244,6 +243,13 @@ public class EmbeddedPlotLevelAccessor implements CommonLevelAccessor, ServerLev
     @Override
     public FeatureFlagSet enabledFeatures() {
         return this.level.enabledFeatures();
+    }
+
+    @Override
+    public EnvironmentAttributeReader environmentAttributes() {
+        // PORT-NOTE(mc26.1): LevelReader#environmentAttributes() replaced the old
+        // biome/weather/lighting accessor pair; the parent level already exposes one.
+        return this.level.environmentAttributes();
     }
 
     @Override

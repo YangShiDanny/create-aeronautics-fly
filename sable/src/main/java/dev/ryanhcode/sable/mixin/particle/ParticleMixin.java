@@ -467,7 +467,7 @@ public abstract class ParticleMixin implements ParticleExtension {
         }
     }
 
-    @Inject(method = "getLightColor", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getLightCoords", at = @At("HEAD"), cancellable = true)
     private void sable$checkSubLevelLightColor(final float f, final CallbackInfoReturnable<Integer> cir) {
         final double particleX = this.x;
         final double particleY = this.y;

@@ -19,6 +19,7 @@ import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.permissions.Permissions;
 
 import java.util.Collection;
 
@@ -28,7 +29,7 @@ public class SimCommand {
 
         if(FabricLoader.getInstance().isDevelopmentEnvironment()) {
             cmd.then(Commands.literal("debugthing")
-                    .requires(command -> command.hasPermission(2))
+                    .requires(command -> command.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER))
                     .then(Commands.literal("start")
                             .then(Commands.argument("steps", IntegerArgumentType.integer()).executes(SimDebugThingCommands::start)))
                     .then(Commands.literal("stop").executes(SimDebugThingCommands::stop))
@@ -37,13 +38,13 @@ public class SimCommand {
         }
 
         cmd.then(Commands.literal("lock")
-                .requires(command -> command.hasPermission(2))
+                .requires(command -> command.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER))
                 .then(Commands.argument("sub_levels", SubLevelArgumentType.subLevels())
                         .executes(ctx -> lockSubLevels(ctx, true))
                         .then(Commands.argument("locked", BoolArgumentType.bool())
                                 .executes(ctx -> lockSubLevels(ctx, false)))));
         cmd.then(Commands.literal("glue")
-                .requires(command -> command.hasPermission(2))
+                .requires(command -> command.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER))
                 .then(Commands.argument("from", BlockPosArgument.blockPos())
                         .then(Commands.argument("to", BlockPosArgument.blockPos())
                                 .executes(SimCommand::glueArea))));

@@ -52,7 +52,7 @@ public class RockCuttingWheelActorRender implements MovementRenderBehaviour {
         state.wheel = CachedBuffers.partial(OffroadPartialModels.ROCK_CUTTING_WHEEL_WHEEL, context.state);
         state.blockState = context.state;
         state.angle = ((LerpedFloat) context.temporaryData).getValue(AnimationTickHolder.getPartialTicks(context.world));
-        state.light = LevelRenderer.getLightColor(renderWorld, context.localPos);
+        state.light = LevelRenderer.getLightCoords(renderWorld, context.localPos);
         state.world = context.world;
         state.worldMatrix = worldMatrix4f;
         return state;

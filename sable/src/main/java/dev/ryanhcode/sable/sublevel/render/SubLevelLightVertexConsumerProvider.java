@@ -4,11 +4,9 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.ryanhcode.sable.render.SubLevelDynamicLights;
 import dev.ryanhcode.sable.sublevel.ClientSubLevel;
 import it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap;
-import net.fabricmc.fabric.api.client.renderer.v1.render.BlockMultiBufferSource;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderType;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LightLayer;
 
@@ -24,9 +22,15 @@ import java.util.Map;
  * around light sources even when the model renderer supplies smooth lighting.
  * Trilinear sampling also guarantees that two blocks sharing a physical vertex
  * receive the same parent-world light value.</p>
+ *
+ * <p>PORT-NOTE(mc26.1): this used to also implement FRAPI's
+ * {@code BlockMultiBufferSource} so block models could be fed through it. That
+ * interface and the immediate {@code Renderer#render} entry point were removed in
+ * 26.1 - block geometry is now built from {@code QuadEmitter}s and submitted as
+ * render-state nodes - so only the {@link MultiBufferSource} half remains, which
+ * is what block entities and other immediate geometry use.</p>
  */
-public final class SubLevelLightVertexConsumerProvider
-        implements BlockMultiBufferSource, MultiBufferSource {
+public final class SubLevelLightVertexConsumerProvider implements MultiBufferSource {
 
     private static final double LIGHT_CELL_CENTER = 0.5;
 
@@ -35,8 +39,7 @@ public final class SubLevelLightVertexConsumerProvider
     private final double cameraY;
     private final double cameraZ;
     private final SubLevelDynamicLights.OwnLightMask ownLightMask;
-    private final BlockMultiBufferSource blockDelegate;
-    private final MultiBufferSource blockEntityDelegate;
+    private final MultiBufferSource delegate;
     private final Map<VertexConsumer, SubLevelLightVertexConsumer> consumers = new IdentityHashMap<>();
     private final Long2IntOpenHashMap lightCache = new Long2IntOpenHashMap();
     private final BlockPos.MutableBlockPos lightPos = new BlockPos.MutableBlockPos();
@@ -47,8 +50,7 @@ public final class SubLevelLightVertexConsumerProvider
             final double cameraX,
             final double cameraY,
             final double cameraZ,
-            final BlockMultiBufferSource blockDelegate,
-            final MultiBufferSource blockEntityDelegate
+            final MultiBufferSource delegate
     ) {
         this.level = level;
         this.cameraX = cameraX;
@@ -58,19 +60,13 @@ public final class SubLevelLightVertexConsumerProvider
                 level.getLightEngine(),
                 subLevel
         );
-        this.blockDelegate = blockDelegate;
-        this.blockEntityDelegate = blockEntityDelegate;
+        this.delegate = delegate;
         this.lightCache.defaultReturnValue(-1);
     }
 
     @Override
-    public VertexConsumer getBuffer(final ChunkSectionLayer layer) {
-        return this.wrap(this.blockDelegate.getBuffer(layer));
-    }
-
-    @Override
     public VertexConsumer getBuffer(final RenderType renderType) {
-        return this.wrap(this.blockEntityDelegate.getBuffer(renderType));
+        return this.wrap(this.delegate.getBuffer(renderType));
     }
 
     private VertexConsumer wrap(final VertexConsumer delegate) {
@@ -203,6 +199,12 @@ public final class SubLevelLightVertexConsumerProvider
         }
 
         @Override
+        public VertexConsumer setColor(final int argb) {
+            this.delegate.setColor(argb);
+            return this;
+        }
+
+        @Override
         public VertexConsumer setUv(final float u, final float v) {
             this.delegate.setUv(u, v);
             return this;
@@ -231,6 +233,12 @@ public final class SubLevelLightVertexConsumerProvider
         @Override
         public VertexConsumer setNormal(final float x, final float y, final float z) {
             this.delegate.setNormal(x, y, z);
+            return this;
+        }
+
+        @Override
+        public VertexConsumer setLineWidth(final float lineWidth) {
+            this.delegate.setLineWidth(lineWidth);
             return this;
         }
     }

@@ -90,7 +90,7 @@ public class RopeStrandRenderer {
                 ps.mulPose(orientation);
                 ps.translate(-0.5, -0.5, -0.5);
                 final BlockPos pos = BlockPos.containing(globalRenderPos.x, globalRenderPos.y, globalRenderPos.z);
-                final int worldLight = LevelRenderer.getLightColor(level, pos);
+                final int worldLight = LevelRenderer.getLightCoords(level, pos);
 
                 if (i > 1) {
                     knot.light(worldLight)

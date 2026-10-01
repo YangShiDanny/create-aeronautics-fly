@@ -33,7 +33,7 @@ public final class CreativeModeTabModifier implements CreativeModeTab.Output {
         return parameters.get();
     }
 
-    public boolean hasPermission() {
+    public boolean hasPermissions() {
         return hasPermissions.getAsBoolean();
     }
 
