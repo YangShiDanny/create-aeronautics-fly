@@ -23,7 +23,7 @@ public class SableChunkEventPlatformImpl implements SableChunkEventPlatform {
 
     @Override
     public void onPlotChunkLoaded(final LevelChunk chunk) {
-        ServerChunkEvents.CHUNK_LOAD.invoker().onChunkLoad((ServerLevel) chunk.getLevel(), chunk);
+        ServerChunkEvents.CHUNK_LOAD.invoker().onChunkLoad((ServerLevel) chunk.getLevel(), chunk, false);
     }
 
 }

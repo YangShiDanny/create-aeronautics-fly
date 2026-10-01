@@ -14,7 +14,7 @@ import java.util.BitSet;
  * Stores the map for which plots are occupied
  */
 public class SubLevelOccupancySavedData extends SavedData {
-    public static final String FILE_ID = "sable_sub_level_occupancy";
+    public static final Identifier FILE_ID = Identifier.fromNamespaceAndPath("sable", "sable_sub_level_occupancy");
     private final ServerLevel level;
 
     private SubLevelOccupancySavedData(final ServerLevel level) {

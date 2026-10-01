@@ -33,6 +33,7 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributeHandler;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
@@ -214,7 +215,7 @@ public class FluidBuilder<T extends SimpleFlowableFluid, P> extends AbstractBuil
         if (layer == RenderType.cutout()) {
             return ChunkSectionLayer.CUTOUT;
         }
-        if (layer == RenderType.translucentMovingBlock()) {
+        if (layer == RenderTypes.translucentMovingBlock()) {
             return ChunkSectionLayer.TRANSLUCENT;
         }
         if (layer == RenderType.tripwire()) {

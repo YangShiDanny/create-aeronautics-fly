@@ -19,6 +19,7 @@ import com.zurrtum.create.client.catnip.render.SuperByteBuffer;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -131,7 +132,7 @@ public class RopeStrandRenderer {
                 new Vector3d(rad, 0, -rad),
         };
 
-        final VertexConsumer linesVB = buffer.getBuffer(RenderType.lines());
+        final VertexConsumer linesVB = buffer.getBuffer(RenderTypes.lines());
         final Matrix4f pose = ps.last().pose();
 
         for (int i = 0; i < ropeRenderPoints.size() + 1; i++) {

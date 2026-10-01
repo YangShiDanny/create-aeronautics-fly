@@ -243,7 +243,7 @@ public class SableSpawnCommands {
         final int radiusChunks = (radius + 8) / 16;
         for (int x = -radiusChunks; x <= radiusChunks; x++) {
             for (int z = -radiusChunks; z <= radiusChunks; z++) {
-                plot.newEmptyChunk(new ChunkPos(center.x + x, center.z + z));
+                plot.newEmptyChunk(new ChunkPos(center.x() + x, center.z() + z));
             }
         }
 
@@ -297,7 +297,7 @@ public class SableSpawnCommands {
 
         for (int x = minChunkX; x <= maxChunkX; x++) {
             for (int z = minChunkZ; z <= maxChunkZ; z++) {
-                plot.newEmptyChunk(new ChunkPos(center.x + x, center.z + z));
+                plot.newEmptyChunk(new ChunkPos(center.x() + x, center.z() + z));
             }
         }
 
@@ -501,7 +501,7 @@ public class SableSpawnCommands {
         final int radiusChunks = (size + 8) / 16;
         for (int x = -radiusChunks; x <= radiusChunks; x++) {
             for (int z = -radiusChunks; z <= radiusChunks; z++) {
-                plot.newEmptyChunk(new ChunkPos(center.x + x, center.z + z));
+                plot.newEmptyChunk(new ChunkPos(center.x() + x, center.z() + z));
             }
         }
         for (int x = -size; x <= size; x++) {

@@ -296,7 +296,7 @@ public class PhysicsChunkTicketManager {
             if (set.isEmpty()) {
                 final Ticket vanillaTicket = this.vanillaChunkTickets.remove(chunkLong);
                 if (vanillaTicket != null) {
-                    level.getChunkSource().removeTicketWithRadius(vanillaTicket.getType(), ChunkPos.containing(chunkLong), 0);
+                    level.getChunkSource().removeTicketWithRadius(vanillaTicket.getType(), ChunkPos.unpack(chunkLong), 0);
                 }
                 forcedChunkIter.remove();
             }

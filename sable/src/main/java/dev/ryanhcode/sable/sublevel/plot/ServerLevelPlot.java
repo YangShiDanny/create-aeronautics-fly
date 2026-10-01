@@ -293,7 +293,7 @@ public class ServerLevelPlot extends LevelPlot {
                 final List<Entity> entities = section.getEntities().toList();
 
                 for (final Entity entity : entities) {
-                    if (entity.getType().is(SableTags.DESTROY_WITH_SUB_LEVEL)) {
+                    if (entity.getType().builtInRegistryHolder().is(SableTags.DESTROY_WITH_SUB_LEVEL)) {
                         entity.remove(Entity.RemovalReason.KILLED);
                     } else {
                         EntitySubLevelUtil.kickEntity(subLevel, entity);
@@ -358,7 +358,7 @@ public class ServerLevelPlot extends LevelPlot {
         tag.putInt("plot_x", this.plotPos.x() - this.container.getOrigin().x());
         tag.putInt("plot_z", this.plotPos.z() - this.container.getOrigin().y);
         tag.putInt("log_size", this.logSize);
-        tag.putString("biome", this.biome.location().toString());
+        tag.putString("biome", this.biome.identifier().toString());
         tag.putInt("data_version", DATA_VERSION);
 
         final ServerLevel level = this.getSubLevel().getLevel();
@@ -489,7 +489,7 @@ public class ServerLevelPlot extends LevelPlot {
                 final CompoundTag sectionTag = sectionsTag.getCompoundOrEmpty(sectionKey);
 
                 palettedContainer = BLOCK_STATE_CODEC.parse(NbtOps.INSTANCE, sectionTag.getCompoundOrEmpty("block_states"))
-                        .promotePartial(string -> logLoadingErrors(ChunkPos.containing(chunkPos), chunk.getSectionYFromSectionIndex(yIndex), string))
+                        .promotePartial(string -> logLoadingErrors(ChunkPos.unpack(chunkPos), chunk.getSectionYFromSectionIndex(yIndex), string))
                         .getOrThrow(SerializableChunkData.ChunkReadException::new);
 
                 final Registry<Biome> biomeRegistry = level.registryAccess().lookupOrThrow(Registries.BIOME);

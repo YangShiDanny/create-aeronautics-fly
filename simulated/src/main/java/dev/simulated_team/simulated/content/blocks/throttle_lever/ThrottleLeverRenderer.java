@@ -18,6 +18,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -105,7 +106,7 @@ public class ThrottleLeverRenderer extends SafeBlockEntityRenderer<ThrottleLever
     }
 
     private static void renderOutline(final ThrottleLeverBlockEntity be, final PoseStack ms, final MultiBufferSource bufferSource, final float angle) {
-        final VertexConsumer consumer = bufferSource.getBuffer(RenderType.lines());
+        final VertexConsumer consumer = bufferSource.getBuffer(RenderTypes.lines());
         final VoxelShape leverShape = SimBlocks.THROTTLE_LEVER.get().getHandleShape(SimBlocks.THROTTLE_LEVER.getDefaultState());
 
         ms.pushPose();

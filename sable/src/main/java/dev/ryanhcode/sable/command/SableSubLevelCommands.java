@@ -188,7 +188,7 @@ public class SableSubLevelCommands {
         for (final SubLevel target : targets) {
             final LevelPlot plot = target.getPlot();
             final Vector2i origin = container.getOrigin();
-            container.removeSubLevel(plot.plotPos.x - origin.x(), plot.plotPos.z - origin.y, SubLevelRemovalReason.REMOVED);
+            container.removeSubLevel(plot.plotPos.x() - origin.x(), plot.plotPos.z() - origin.y, SubLevelRemovalReason.REMOVED);
         }
 
         SableCommandHelper.sendSuccessDescribingSubLevels("commands.sable.sub_level.remove.success", ctx, targets);

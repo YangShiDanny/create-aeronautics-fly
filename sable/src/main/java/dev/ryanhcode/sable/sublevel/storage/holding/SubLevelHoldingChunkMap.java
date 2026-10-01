@@ -203,7 +203,7 @@ public class SubLevelHoldingChunkMap implements AutoCloseable {
      */
     public void saveAll() {
         if (SableConfig.SUB_LEVEL_SAVING_LOG_MESSAGE.get()) {
-            Sable.LOGGER.info("Saving sub-levels for level '{}'/{}", this.level, this.level.dimension().location());
+            Sable.LOGGER.info("Saving sub-levels for level '{}'/{}", this.level, this.level.dimension().identifier());
         }
 
         if (this.verboseLogging) {
@@ -292,7 +292,7 @@ public class SubLevelHoldingChunkMap implements AutoCloseable {
         }
 
         for (final long longKey : this.dirtyHoldingChunks) {
-            final ChunkPos chunkPos = ChunkPos.containing(longKey);
+            final ChunkPos chunkPos = ChunkPos.unpack(longKey);
 
             final SubLevelHoldingChunk holdingChunk = this.loadedHoldingChunks.get(longKey);
 
@@ -585,11 +585,11 @@ public class SubLevelHoldingChunkMap implements AutoCloseable {
         final Collection<ServerSubLevel> forceLoaded = this.container.collectForceLoadedSubLevels();
 
         for (final long l : this.chunksToUnload) {
-            this.processUnload(ChunkPos.containing(l), forceLoaded);
+            this.processUnload(ChunkPos.unpack(l), forceLoaded);
         }
 
         for (final long l : this.chunksToLoad) {
-            this.processLoad(ChunkPos.containing(l));
+            this.processLoad(ChunkPos.unpack(l));
         }
         this.chunksToUnload.clear();
         this.chunksToLoad.clear();

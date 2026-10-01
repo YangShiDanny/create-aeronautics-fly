@@ -32,7 +32,7 @@ import java.util.UUID;
  * Stores the force loading tickets for sub-levels
  */
 public class SubLevelTicketsSavedData extends SavedData {
-    public static final String FILE_ID = "sable_sub_level_force_load_tickets";
+    public static final Identifier FILE_ID = Identifier.fromNamespaceAndPath("sable", "sable_sub_level_force_load_tickets");
     private final ServerLevel level;
 
     private SubLevelTicketsSavedData(final ServerLevel level) {

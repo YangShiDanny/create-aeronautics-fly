@@ -329,7 +329,7 @@ public abstract class EntityMixin implements EntityMovementExtension {
 
         // Destroy us if we're in #sable:destroy_when_leaving_plot and we've left the plot
         if (containingSubLevel != null) {
-            if (!this.getBoundingBox().intersects(containingSubLevel.getPlot().getBoundingBox().toAABB().inflate(1.0)) && this.getType().is(SableTags.DESTROY_WHEN_LEAVING_PLOT)) {
+            if (!this.getBoundingBox().intersects(containingSubLevel.getPlot().getBoundingBox().toAABB().inflate(1.0)) && this.getType().builtInRegistryHolder().is(SableTags.DESTROY_WHEN_LEAVING_PLOT)) {
                 if (this.level() instanceof ServerLevel serverLevel) {
                     this.kill(serverLevel);
                 }

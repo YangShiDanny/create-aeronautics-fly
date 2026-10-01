@@ -143,7 +143,7 @@ public class SableStorageCommands {
             final MutableComponent component = Component.translatable("commands.sable.info.name", Component.literal(name));
             // PORT-NOTE(mc26.1): ResourceKey.location() -> identifier(); ClickEvent/HoverEvent are sealed
             // interfaces with per-action records now.
-            final Identifier dimension = level.dimension().location();
+            final Identifier dimension = level.dimension().identifier();
             final Component fileId = Component.translatable("commands.sable.info.name.tooltip", globalPointer.toString());
             component.setStyle(Style.EMPTY.withClickEvent(new ClickEvent.SuggestCommand(new Formatter().format(Locale.ROOT, "/execute in %s run tp @s %.2f %.2f %.2f", dimension, pos.x(), pos.y(), pos.z()).toString()))
                     .withHoverEvent(new HoverEvent.ShowText(fileId))

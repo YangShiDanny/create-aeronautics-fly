@@ -85,7 +85,7 @@ public record DimensionPhysics(Identifier dimension, int priority, Optional<Floa
         // Both branches of the old ternary produced (0,0,0), so this is behavior-preserving.
         final Vector3f north = DEFAULT_MAGNETIC_NORTH;
 
-        return new DimensionPhysics(level.dimension().location(),
+        return new DimensionPhysics(level.dimension().identifier(),
                 0,
                 Optional.of(DEFAULT_UNIVERSAL_DRAG),
                 Optional.of(DEFAULT_GRAVITY),

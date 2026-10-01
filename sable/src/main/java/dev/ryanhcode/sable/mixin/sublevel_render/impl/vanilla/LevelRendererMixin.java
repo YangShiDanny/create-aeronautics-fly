@@ -107,11 +107,11 @@ public abstract class LevelRendererMixin {
         final ChunkSectionsToRender original = cir.getReturnValue();
         final EnumMap<ChunkSectionLayer, List<RenderPass.Draw<GpuBufferSlice[]>>> drawsPerLayer = new EnumMap<>(ChunkSectionLayer.class);
         for (final ChunkSectionLayer layer : ChunkSectionLayer.values()) {
-            final List<RenderPass.Draw<GpuBufferSlice[]>> existingDraws = original.drawsPerLayer().get(layer);
+            final List<RenderPass.Draw<GpuBufferSlice[]>> existingDraws = original.drawGroupsPerLayer().get(layer);
             drawsPerLayer.put(layer, existingDraws == null ? new ArrayList<>() : new ArrayList<>(existingDraws));
         }
 
-        final int originalTransformCount = original.dynamicTransforms().length;
+        final int originalTransformCount = original.chunkSectionInfos().length;
         final List<DynamicUniforms.Transform> transforms = new ArrayList<>();
         final Vector4f white = new Vector4f(1.0F, 1.0F, 1.0F, 1.0F);
         final Matrix4f textureMatrix = new Matrix4f();
@@ -176,7 +176,7 @@ public abstract class LevelRendererMixin {
         }
 
         final GpuBufferSlice[] additionalTransforms = RenderSystem.getDynamicUniforms().writeTransforms(transforms.toArray(DynamicUniforms.Transform[]::new));
-        final GpuBufferSlice[] combinedTransforms = Arrays.copyOf(original.dynamicTransforms(), originalTransformCount + additionalTransforms.length);
+        final GpuBufferSlice[] combinedTransforms = Arrays.copyOf(original.chunkSectionInfos(), originalTransformCount + additionalTransforms.length);
         System.arraycopy(additionalTransforms, 0, combinedTransforms, originalTransformCount, additionalTransforms.length);
         cir.setReturnValue(new ChunkSectionsToRender(drawsPerLayer, maxIndicesRequired, combinedTransforms));
     }

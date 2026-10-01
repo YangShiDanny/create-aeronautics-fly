@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class SubLevelTrackingPointSavedData extends SavedData implements SubLevelObserver {
-    public static final String FILE_ID = "sable_tracking_points";
+    public static final Identifier FILE_ID = Identifier.fromNamespaceAndPath("sable", "sable_tracking_points");
     private final ServerLevel level;
     private final Map<UUID, TrackingPoint> trackingPoints = new Object2ObjectOpenHashMap<>();
 

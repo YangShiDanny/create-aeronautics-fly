@@ -87,7 +87,7 @@ public class EntitySubLevelUtil {
 
     public static boolean shouldKick(final Entity entity) {
         // PORT-NOTE(mc26.1): EntityType.is(TagKey) is gone; tag checks go through Entity.getType().
-        return !entity.getType().is(SableTags.RETAIN_IN_SUB_LEVEL);
+        return !entity.getType().builtInRegistryHolder().is(SableTags.RETAIN_IN_SUB_LEVEL);
     }
 
     @Nullable

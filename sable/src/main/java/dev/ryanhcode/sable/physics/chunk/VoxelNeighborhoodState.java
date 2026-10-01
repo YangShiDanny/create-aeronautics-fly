@@ -75,7 +75,7 @@ public enum VoxelNeighborhoodState {
     }
 
     public static VoxelNeighborhoodState getState(final LevelAccelerator level, final BlockPos pos, @Nullable final LevelChunk chunk) {
-        final ChunkPos initialPos = new ChunkPos(pos);
+        final ChunkPos initialPos = ChunkPos.containing(pos);
         final BlockState state = chunk != null ? level.getBlockState(chunk, pos) : level.getBlockState(pos);
 
         if (isLiquid(state) || BlockWithSubLevelCollisionCallback.hasCallback(state))
@@ -97,8 +97,8 @@ public enum VoxelNeighborhoodState {
             final BlockPos nPos = pos.relative(Direction.get(Direction.AxisDirection.NEGATIVE, axis));
             final BlockPos pPos = pos.relative(Direction.get(Direction.AxisDirection.POSITIVE, axis));
 
-            final BlockState nState = chunk != null && new ChunkPos(nPos).equals(initialPos) ? level.getBlockState(chunk, nPos) : level.getBlockState(nPos);
-            final BlockState pState = chunk != null && new ChunkPos(pPos).equals(initialPos) ? level.getBlockState(chunk, pPos) : level.getBlockState(pPos);
+            final BlockState nState = chunk != null && ChunkPos.containing(nPos).equals(initialPos) ? level.getBlockState(chunk, nPos) : level.getBlockState(nPos);
+            final BlockState pState = chunk != null && ChunkPos.containing(pPos).equals(initialPos) ? level.getBlockState(chunk, pPos) : level.getBlockState(pPos);
 
             final boolean negativeSolid = isSolid(level, nPos, nState) && isFullBlock(level, nPos, nState);
             final boolean positiveSolid = isSolid(level, pPos, pState) && isFullBlock(level, pPos, pState);

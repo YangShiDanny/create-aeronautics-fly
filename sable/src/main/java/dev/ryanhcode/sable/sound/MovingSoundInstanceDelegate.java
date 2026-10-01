@@ -79,8 +79,8 @@ public class MovingSoundInstanceDelegate implements SoundInstance, TickableSound
     }
 
     @Override
-    public @NotNull Identifier getLocation() {
-        return this.instance.getLocation();
+    public @NotNull Identifier getIdentifier() {
+        return this.instance.getIdentifier();
     }
 
     @Override

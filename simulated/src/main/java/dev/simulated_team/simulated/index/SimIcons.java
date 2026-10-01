@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.world.phys.Vec3;
@@ -57,7 +58,7 @@ public class SimIcons extends AllIcons {
 
     @Override
     public RenderType bind() {
-        return RenderType.text(ICON_ATLAS);
+        return RenderTypes.text(ICON_ATLAS);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class SimIcons extends AllIcons {
     }
 
     public void render(final PoseStack ms, final MultiBufferSource buffer, final int color) {
-        final VertexConsumer builder = buffer.getBuffer(RenderType.text(ICON_ATLAS));
+        final VertexConsumer builder = buffer.getBuffer(RenderTypes.text(ICON_ATLAS));
         final Matrix4f matrix = ms.last().pose();
         final Color rgb = new Color(color);
         final int light = LightCoordsUtil.FULL_BRIGHT;

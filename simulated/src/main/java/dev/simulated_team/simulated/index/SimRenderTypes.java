@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.resources.Identifier;
 
 public final class SimRenderTypes {
@@ -71,7 +72,7 @@ public final class SimRenderTypes {
             .build();
 
     // Reuse the vanilla shader-compatible lightning pipeline, but draw to the main target.
-    // RenderType.lightning() writes to the weather target, which has already been composited
+    // RenderTypes.lightning() writes to the weather target, which has already been composited
     // by the time shader-pack-safe staff overlays are drawn.
     private static final RenderType STAFF_OVERLAY = create(
             "simulated_staff_overlay", RenderPipelines.LIGHTNING, compositeState(null, false, false));
@@ -301,6 +302,6 @@ public final class SimRenderTypes {
         // The old Veil spring shader is not available in the 1.21.10 Fabric port.
         // SpringRenderer emits a second, inward-facing copy of the mesh itself;
         // disabling culling would draw both copies on top of each other and z-fight.
-        return RenderType.entityCutout(texture);
+        return RenderTypes.entityCutout(texture);
     }
 }

@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.ShapeRenderer;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.debug.DebugRenderer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import org.joml.Quaternionf;
 import org.joml.Vector3d;
 import org.joml.Vector3dc;
@@ -53,7 +54,7 @@ public class SubLevelBoundsRendererMixin {
             return;
         }
 
-        final VertexConsumer consumer = bufferSource.getBuffer(RenderType.lines());
+        final VertexConsumer consumer = bufferSource.getBuffer(RenderTypes.lines());
 
         for (final SubLevel subLevel : container.getAllSubLevels()) {
             if (!(subLevel instanceof final ClientSubLevel clientSubLevel)) {

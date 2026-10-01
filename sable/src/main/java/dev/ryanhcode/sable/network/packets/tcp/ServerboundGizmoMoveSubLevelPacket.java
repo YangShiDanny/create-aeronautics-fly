@@ -51,7 +51,7 @@ public record ServerboundGizmoMoveSubLevelPacket(UUID subLevel, Vector3d positio
 
         final ServerSubLevelContainer container = SubLevelContainer.getContainer(level);
 
-        if (!context.player().hasPermissions(1)) {
+        if (!context.player().hasPermission(1)) {
             Sable.LOGGER.warn("Player {} tried to move a sub-level with gizmo without permission", context.player().getGameProfile().name());
             return;
         }

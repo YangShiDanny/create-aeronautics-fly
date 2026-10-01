@@ -115,7 +115,7 @@ public class ServerChunkCacheMixin {
     private void isPositionTicking(final long pos, final CallbackInfoReturnable<Boolean> cir) {
         final SubLevelContainer container = this.sable$getPlotContainer();
         if (container.inBounds(ChunkPos.getX(pos), ChunkPos.getZ(pos))) {
-            final ChunkPos chunkPos = ChunkPos.containing(pos);
+            final ChunkPos chunkPos = ChunkPos.unpack(pos);
             final LevelChunk chunk = container.getChunk(chunkPos);
 
             cir.setReturnValue(chunk != null);
@@ -126,7 +126,7 @@ public class ServerChunkCacheMixin {
     private void getFullChunk(final long pos, final Consumer<LevelChunk> consumer, final CallbackInfo ci) {
         final SubLevelContainer container = this.sable$getPlotContainer();
         if (container.inBounds(ChunkPos.getX(pos), ChunkPos.getZ(pos))) {
-            final ChunkPos chunkPos = ChunkPos.containing(pos);
+            final ChunkPos chunkPos = ChunkPos.unpack(pos);
             final LevelChunk chunk = container.getChunk(chunkPos);
 
             if (chunk != null) {

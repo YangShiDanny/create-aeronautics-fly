@@ -34,7 +34,7 @@ public class BoreheadContraptionEntity extends ControlledContraptionEntity {
     public static BoreheadContraptionEntity create(final Level world, final IControlContraption controller,
                                                    final Contraption contraption) {
         final BoreheadContraptionEntity entity = new BoreheadContraptionEntity(OffroadEntityTypes.BOREHEAD_CONTRAPTION_ENTITY.get(), world);
-        entity.setControllerPos(controller.getBlockPosition());
+        entity.setControllerPos(controller.blockPosition());
         entity.setContraption(contraption);
         return entity;
     }

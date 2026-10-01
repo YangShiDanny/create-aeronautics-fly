@@ -8,6 +8,7 @@ import dev.eriksonn.aeronautics.Aeronautics;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.resources.Identifier;
 
 public final class AeroRenderTypes {
@@ -81,10 +82,10 @@ public final class AeroRenderTypes {
     }
 
     public static RenderType levitite() {
-        return RenderType.translucentMovingBlock();
+        return RenderTypes.translucentMovingBlock();
     }
 
     public static RenderType levititeGhosts() {
-        return RenderType.translucentMovingBlock();
+        return RenderTypes.translucentMovingBlock();
     }
 }

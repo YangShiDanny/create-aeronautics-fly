@@ -19,7 +19,7 @@ public class ChunkMapMixin {
 
     @WrapOperation(method = "*", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ChunkMap$DistanceManager;inEntityTickingRange(J)Z"))
     private boolean sable$wrapEntityTickingRange(final ChunkMap.DistanceManager instance, final long l, final Operation<Boolean> original) {
-        final ChunkPos chunkPos = ChunkPos.containing(l);
+        final ChunkPos chunkPos = ChunkPos.unpack(l);
         final SubLevelContainer container = SubLevelContainer.getContainer(this.level);
 
         final PlotChunkHolder chunkHolder = container.getChunkHolder(chunkPos);

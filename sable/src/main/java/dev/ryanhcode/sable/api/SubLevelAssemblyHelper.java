@@ -338,9 +338,9 @@ public class SubLevelAssemblyHelper {
             if (firstBlock == null) {
                 firstBlock = block;
             }
-            final ChunkPos chunk = new ChunkPos(transform.apply(block));
+            final ChunkPos chunk = ChunkPos.containing(transform.apply(block));
 
-            final Vector2i jomlChunkPos = new Vector2i(chunk.x, chunk.z);
+            final Vector2i jomlChunkPos = new Vector2i(chunk.x(), chunk.z());
             if (chunkBoundsMin == null) {
                 chunkBoundsMin = new Vector2i(jomlChunkPos);
                 chunkBoundsMax = new Vector2i(jomlChunkPos);

@@ -48,7 +48,7 @@ public class ExecuteCommandMixin {
                                                 final Pose3d pose = subLevel.logicalPose();
                                                 final Vec3 localPos = pose.transformPositionInverse(commandContext.getSource().getPosition());
 
-                                                if (container.getPlot(new ChunkPos(BlockPos.containing(localPos))) != subLevel.getPlot()) {
+                                                if (container.getPlot(ChunkPos.containing(BlockPos.containing(localPos))) != subLevel.getPlot()) {
                                                     throw SableCommandHelper.ERROR_NOT_INSIDE_SUB_LEVEL.create();
                                                 }
 
@@ -69,7 +69,7 @@ public class ExecuteCommandMixin {
                                                 final Vec3 sourcePosition = commandContext.getSource().getPosition();
                                                 final Vec3 globalPos = pose.transformPosition(sourcePosition);
 
-                                                if (container.getPlot(new ChunkPos(BlockPos.containing(sourcePosition))) != subLevel.getPlot()) {
+                                                if (container.getPlot(ChunkPos.containing(BlockPos.containing(sourcePosition))) != subLevel.getPlot()) {
                                                     throw SableCommandHelper.ERROR_NOT_INSIDE_SUB_LEVEL.create();
                                                 }
 

@@ -33,7 +33,7 @@ public class PropellerBearingContraptionEntity extends ControlledContraptionEnti
                                                      final Contraption contraption) {
         final PropellerBearingContraptionEntity entity =
                 new PropellerBearingContraptionEntity(AeroEntityTypes.PROPELLER_CONTROLLED_CONTRAPTION.get(), world);
-        entity.setControllerPos(controller.getBlockPosition());
+        entity.setControllerPos(controller.blockPosition());
         entity.setContraption(contraption);
         return entity;
     }

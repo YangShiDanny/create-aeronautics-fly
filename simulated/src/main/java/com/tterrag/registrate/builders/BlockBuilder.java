@@ -18,6 +18,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
@@ -152,7 +153,7 @@ public class BlockBuilder<T extends Block, P> extends AbstractBuilder<Block, T, 
         if (layer == RenderType.cutout()) {
             return ChunkSectionLayer.CUTOUT;
         }
-        if (layer == RenderType.translucentMovingBlock()) {
+        if (layer == RenderTypes.translucentMovingBlock()) {
             return ChunkSectionLayer.TRANSLUCENT;
         }
         if (layer == RenderType.tripwire()) {
