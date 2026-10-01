@@ -96,7 +96,27 @@ jobs:
               echo '```'
               grep -E ': error:' compile.log | grep -oE 'symbol: *(class|method|variable) [^ ]+' | sort | uniq -c | sort -rn | head -120 || true
               echo '```'
+              echo
+              echo "### Gradle failure block"
+              echo '```'
+              sed -n '/^FAILURE: Build failed/,/^BUILD FAILED/p' compile.log | head -120 || true
+              echo '```'
+              echo
+              echo "### What went wrong"
+              echo '```'
+              sed -n '/^What went wrong:/,/^\* Try:/p' compile.log | head -200 || true
+              echo '```'
             fi
+            echo
+            echo "### Raw log head (first 150 lines)"
+            echo '```'
+            head -150 compile.log || true
+            echo '```'
+            echo
+            echo "### Raw log tail (last 400 lines)"
+            echo '```'
+            tail -400 compile.log || true
+            echo '```'
           } > /tmp/ci-report.md
           echo "report bytes: $(wc -c < /tmp/ci-report.md)"
 
@@ -127,10 +147,13 @@ jobs:
           git init -q
           git checkout -q -b ci-logs
           cp /tmp/ci-report.md ./ci-report.md
+          cp "$GITHUB_WORKSPACE/compile.log" ./compile.log 2>/dev/null || true
           git add ci-report.md
+          [ -f compile.log ] && git add compile.log
           git -c user.name='github-actions[bot]' \
               -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
               commit -q -m "CI report for ${GITHUB_SHA:0:7} (${GITHUB_REF_NAME})"
+          ls -la
           git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" ci-logs
 
       - name: Fail if compilation failed
