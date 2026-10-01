@@ -2,7 +2,7 @@ package dev.simulated_team.simulated.content.worldgen;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.gamerules.GameRules;
 import org.jetbrains.annotations.Nullable;
 
 public class AirshipReadyPreset extends SimulatedWorldPreset {

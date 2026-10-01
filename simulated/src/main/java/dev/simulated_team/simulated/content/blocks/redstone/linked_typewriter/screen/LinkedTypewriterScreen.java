@@ -21,7 +21,7 @@ import dev.simulated_team.simulated.network.packets.linked_typewriter.Typewriter
 import dev.simulated_team.simulated.util.SimColors;
 import foundry.veil.api.network.VeilPacketManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
@@ -163,13 +163,13 @@ public class LinkedTypewriterScreen extends AbstractSimiContainerScreen<LinkedTy
     }
 
     @Override
-    protected void renderBg(final GuiGraphics graphics, final float partialTick,
+    protected void renderBg(final GuiGraphicsExtractor graphics, final float partialTick,
                             final int mouseX, final int mouseY) {
         if (this.keyEditor.isActive()) {
             this.keyEditor.renderBackground(graphics, partialTick);
         } else {
             this.background.render(graphics, this.leftPos, this.topPos);
-            graphics.drawString(
+            graphics.text(
                     this.font,
                     this.title,
                     this.leftPos + (this.background.width - this.font.width(this.title)) / 2,
@@ -185,7 +185,7 @@ public class LinkedTypewriterScreen extends AbstractSimiContainerScreen<LinkedTy
         this.modifier.renderBackground(graphics);
     }
 
-    private void renderTypewriter(final GuiGraphics graphics) {
+    private void renderTypewriter(final GuiGraphicsExtractor graphics) {
         if (this.typewriterPreview == null) {
             return;
         }

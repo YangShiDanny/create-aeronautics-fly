@@ -14,7 +14,7 @@ import com.zurrtum.create.catnip.data.Iterate;
 import com.zurrtum.create.client.catnip.gui.AbstractSimiScreen;
 import com.zurrtum.create.client.catnip.gui.ScreenOpener;
 import com.zurrtum.create.client.catnip.gui.element.GuiGameElement;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -100,7 +100,7 @@ public class ModulatingLinkedReceiverScreen extends AbstractSimiScreen {
     }
 
     @Override
-    protected void renderWindow(final GuiGraphics graphics, final int mouseX, final int mouseY, final float partialTicks) {
+    protected void renderWindow(final GuiGraphicsExtractor graphics, final int mouseX, final int mouseY, final float partialTicks) {
         final int x = this.guiLeft;
         final int y = this.guiTop;
 
@@ -108,7 +108,7 @@ public class ModulatingLinkedReceiverScreen extends AbstractSimiScreen {
 
         this.background.render(graphics, x, y);
 
-        graphics.drawString(this.font, this.title, x + (this.background.width - 8) / 2 - this.font.width(this.title) / 2, y + 4, SimColors.TITLE_DARK_RED, false);
+        graphics.text(this.font, this.title, x + (this.background.width - 8) / 2 - this.font.width(this.title) / 2, y + 4, SimColors.TITLE_DARK_RED, false);
 
         int currentX = 22;
 
@@ -177,8 +177,8 @@ public class ModulatingLinkedReceiverScreen extends AbstractSimiScreen {
                 .render(graphics);
     }
 
-    private void label(final GuiGraphics graphics, final int x, final int y, final Component text) {
-        graphics.drawString(this.font, text, this.guiLeft + x, this.guiTop + 26 + y, 0xFFFFEE);
+    private void label(final GuiGraphicsExtractor graphics, final int x, final int y, final Component text) {
+        graphics.text(this.font, text, this.guiLeft + x, this.guiTop + 26 + y, 0xFFFFEE);
     }
 
     @Override

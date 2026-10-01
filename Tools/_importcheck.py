@@ -19,8 +19,13 @@ FRAPI_JAR = os.path.join(ROOT, "Tools", "_jars", "frapi.jar")
 
 IMPORT_RE = re.compile(r"^\s*import\s+(static\s+)?([A-Za-z0-9_.$]+)\s*;", re.M)
 
-# Packages we can validate locally.
-CHECKED = ("net.minecraft.", "com.mojang.", "net.fabricmc.fabric.api.client.renderer.")
+# Packages we can validate locally. `com.mojang.serialization`, `.datafixers`,
+# `.logging`, `.authlib` and `.brigadier` live in their own jars (DFU etc.) and
+# are NOT inside the Minecraft jar, so they must not be validated here.
+CHECKED = ("net.minecraft.", "com.mojang.blaze3d.", "com.mojang.math.",
+           "net.fabricmc.fabric.api.client.renderer.")
+SKIP = ("com.mojang.serialization.", "com.mojang.datafixers.", "com.mojang.logging.",
+        "com.mojang.authlib.", "com.mojang.brigadier.", "com.mojang.text2speech.")
 
 
 def entries(jar):

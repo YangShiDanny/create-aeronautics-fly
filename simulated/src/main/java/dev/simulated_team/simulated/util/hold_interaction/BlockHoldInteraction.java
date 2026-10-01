@@ -6,7 +6,7 @@ import dev.simulated_team.simulated.mixin.hold_interaction.KeyMappingInvoker;
 import dev.simulated_team.simulated.util.click_interactions.InteractCallback;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Position;
@@ -55,7 +55,7 @@ public abstract class BlockHoldInteraction implements InteractCallback {
         return this.isActive() && pos.equals(this.interactionPos);
     }
 
-    public void renderOverlay(final GuiGraphics graphics, final int width1, final int height1, final boolean hideGui) {}
+    public void renderOverlay(final GuiGraphicsExtractor graphics, final int width1, final int height1, final boolean hideGui) {}
 
     public static double getInteractionRange(final Player player) {
         return player.getAttribute(Attributes.BLOCK_INTERACTION_RANGE).getValue();

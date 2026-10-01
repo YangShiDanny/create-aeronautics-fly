@@ -7,7 +7,7 @@ import com.zurrtum.create.client.foundation.gui.AllIcons;
 import dev.simulated_team.simulated.Simulated;
 import com.zurrtum.create.client.catnip.gui.element.DelegatedStencilElement;
 import com.zurrtum.create.catnip.theme.Color;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -62,7 +62,7 @@ public class SimIcons extends AllIcons {
     }
 
     @Override
-    public void render(final GuiGraphics graphics, final int x, final int y) {
+    public void extractRenderState(final GuiGraphicsExtractor graphics, final int x, final int y) {
         graphics.blit(RenderPipelines.GUI_TEXTURED, ICON_ATLAS, x, y, this.iconX, this.iconY, 16, 16, 64, 64);
     }
 

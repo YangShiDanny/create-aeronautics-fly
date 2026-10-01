@@ -15,7 +15,7 @@ import io.github.fabricators_of_create.porting_lib.util.DeferredHolder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.rendering.v1.ChunkSectionLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.client.color.block.BlockTintSource;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
@@ -83,7 +83,7 @@ public class BlockBuilder<T extends Block, P> extends AbstractBuilder<Block, T, 
     private NonNullFunction<BlockBehaviour.Properties, BlockBehaviour.Properties> propertiesCallback = NonNullUnaryOperator.identity();
     private Supplier<Supplier<?>> renderLayer;
     @Nullable
-    private NonNullSupplier<Supplier<BlockColor>> colorHandler;
+    private NonNullSupplier<Supplier<BlockTintSource>> colorHandler;
 
     protected BlockBuilder(AbstractRegistrate<?> owner, P parent, String name, BuilderCallback callback, NonNullFunction<BlockBehaviour.Properties, T> factory, NonNullSupplier<BlockBehaviour.Properties> initialProperties) {
         super(owner, parent, name, callback, Registries.BLOCK);
@@ -245,14 +245,14 @@ public class BlockBuilder<T extends Block, P> extends AbstractBuilder<Block, T, 
     }
     
     /**
-     * Register a block color handler for this block. The {@link BlockColor} instance can be shared across many blocks.
+     * Register a block color handler for this block. The {@link BlockTintSource} instance can be shared across many blocks.
      * 
      * @param colorHandler
      *            The color handler to register for this block
      * @return this {@link BlockBuilder}
      */
     // TODO it might be worthwhile to abstract this more and add the capability to automatically copy to the item
-    public BlockBuilder<T, P> color(NonNullSupplier<Supplier<BlockColor>> colorHandler) {
+    public BlockBuilder<T, P> color(NonNullSupplier<Supplier<BlockTintSource>> colorHandler) {
         if (this.colorHandler == null) {
             EnvExecutor.runWhenOn(EnvType.CLIENT, () -> this::registerBlockColor);
         }

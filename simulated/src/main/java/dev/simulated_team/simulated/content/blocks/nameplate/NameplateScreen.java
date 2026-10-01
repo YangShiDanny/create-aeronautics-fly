@@ -5,7 +5,7 @@ import dev.simulated_team.simulated.data.SimLang;
 import dev.simulated_team.simulated.network.packets.name_plate.NameplateChangeNamePacket;
 import foundry.veil.api.network.VeilPacketManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.font.TextFieldHelper;
 import net.minecraft.client.gui.screens.Screen;
@@ -90,14 +90,14 @@ public class NameplateScreen extends Screen {
     }
 
     @Override
-    public void render(final GuiGraphics graphics, final int mouseX, final int mouseY, final float partialTick) {
-        this.renderBackground(graphics, mouseX, mouseY, partialTick);
-        graphics.drawCenteredString(this.font, this.title, this.width / 2, 40, 0xFFFFFF);
+    public void extractRenderState(final GuiGraphicsExtractor graphics, final int mouseX, final int mouseY, final float partialTick) {
+        this.extractBackground(graphics, mouseX, mouseY, partialTick);
+        graphics.centeredText(this.font, this.title, this.width / 2, 40, 0xFFFFFF);
         this.renderNameplate(graphics);
-        super.render(graphics, mouseX, mouseY, partialTick);
+        super.extractRenderState(graphics, mouseX, mouseY, partialTick);
     }
 
-    private void renderNameplate(final GuiGraphics graphics) {
+    private void renderNameplate(final GuiGraphicsExtractor graphics) {
         final Matrix3x2fStack pose = graphics.pose();
         pose.pushMatrix();
         pose.translate(this.width / 2.0f, this.height / 2.0f - 26.0f);
@@ -109,7 +109,7 @@ public class NameplateScreen extends Screen {
         pose.popMatrix();
     }
 
-    private void renderNameplateBackground(final GuiGraphics graphics, final BlockState state) {
+    private void renderNameplateBackground(final GuiGraphicsExtractor graphics, final BlockState state) {
         final String color = ((NameplateBlock) state.getBlock()).getColor().getSerializedName();
         final Matrix3x2fStack pose = graphics.pose();
 
@@ -140,7 +140,7 @@ public class NameplateScreen extends Screen {
         pose.popMatrix();
     }
 
-    private void renderNameplateText(final GuiGraphics graphics) {
+    private void renderNameplateText(final GuiGraphicsExtractor graphics) {
         if (this.nameField == null) {
             return;
         }
@@ -153,7 +153,7 @@ public class NameplateScreen extends Screen {
         final int textWidth = this.font.width(this.message);
         final int textX = -textWidth / 2;
 
-        graphics.drawString(this.font, this.message, textX, 0, color, false);
+        graphics.text(this.font, this.message, textX, 0, color, false);
 
         if (cursorPos >= 0) {
             final int clampedCursor = Math.clamp(cursorPos, 0, this.message.length());
@@ -161,7 +161,7 @@ public class NameplateScreen extends Screen {
 
             if (cursorFlash) {
                 if (cursorPos >= this.message.length()) {
-                    graphics.drawString(this.font, "_", cursorX, 0, color, false);
+                    graphics.text(this.font, "_", cursorX, 0, color, false);
                 } else {
                     graphics.fill(cursorX, -1, cursorX + 1, lineHeight, 0xFF000000 | color);
                 }
@@ -172,7 +172,7 @@ public class NameplateScreen extends Screen {
                 final int selectionEnd = Math.clamp(Math.max(cursorPos, selectionPos), 0, this.message.length());
                 final int selectionX1 = this.font.width(this.message.substring(0, selectionStart)) - textWidth / 2;
                 final int selectionX2 = this.font.width(this.message.substring(0, selectionEnd)) - textWidth / 2;
-                graphics.textHighlight(selectionX1, -1, selectionX2, lineHeight);
+                graphics.textHighlight(selectionX1, -1, selectionX2, lineHeight, false);
             }
         }
     }
