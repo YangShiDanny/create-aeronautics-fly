@@ -130,7 +130,7 @@ public class EnvelopeBlock extends CasingBlock implements Envelope, SpecialBlock
     }
 
     @Override
-    protected int getLightBlock(final BlockState state) {
+    protected int getLightDampening(final BlockState state) {
         return 1;
     }
 

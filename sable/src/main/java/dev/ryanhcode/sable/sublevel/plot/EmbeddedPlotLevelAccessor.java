@@ -127,7 +127,7 @@ public class EmbeddedPlotLevelAccessor implements CommonLevelAccessor, ServerLev
 
     @Override
     public @Nullable ChunkAccess getChunk(final int i, final int j, final ChunkStatus chunkStatus, final boolean bl) {
-        return this.level.getChunk(i + this.centerChunk.x, j + this.centerChunk.z, chunkStatus, bl);
+        return this.level.getChunk(i + this.centerChunk.x(), j + this.centerChunk.z(), chunkStatus, bl);
     }
 
     @Override
@@ -168,7 +168,7 @@ public class EmbeddedPlotLevelAccessor implements CommonLevelAccessor, ServerLev
 
     @Override
     public boolean hasChunk(final int i, final int j) {
-        return this.level.hasChunk(i + this.centerChunk.x, j + this.centerChunk.z);
+        return this.level.hasChunk(i + this.centerChunk.x(), j + this.centerChunk.z());
     }
 
     @Override

@@ -98,7 +98,7 @@ public class LevelAccelerator implements BlockGetter {
     }
 
     public LevelChunk getChunk(final int chunkX, final int chunkZ) {
-        final long pos = ChunkPos.asLong(chunkX, chunkZ);
+        final long pos = ChunkPos.pack(chunkX, chunkZ);
 
         if (pos == this.cachedChunkPos && this.cachedChunkObj != null) {
             return this.cachedChunkObj;

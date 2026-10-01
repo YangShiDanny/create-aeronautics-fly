@@ -32,6 +32,15 @@ allprojects {
     }
 }
 
+// CI needs the *complete* diagnostics surface. javac otherwise stops after 100
+// errors per task, which silently truncated the 26.1 migration log and hid most
+// of the affected sources from the automated fixer.
+subprojects {
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs.addAll(['-Xmaxerrs', '20000', '-Xmaxwarns', '2000'])
+    }
+}
+
 def configureModProject(Project project, String modName) {
     def modProps = new Properties()
     file("${rootProject.projectDir}/${modName}/gradle.properties").withInputStream { modProps.load(it) }

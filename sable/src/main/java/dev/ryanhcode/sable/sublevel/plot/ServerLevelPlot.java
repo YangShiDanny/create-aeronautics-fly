@@ -132,7 +132,7 @@ public class ServerLevelPlot extends LevelPlot {
      * Logs loading errors for a plot chunk section
      */
     private static void logLoadingErrors(final ChunkPos chunkPos, final int y, final String errorText) {
-        Sable.LOGGER.error("Recoverable errors when loading plot section [{}, {}, {}]: {}", chunkPos.x, y, chunkPos.z, errorText);
+        Sable.LOGGER.error("Recoverable errors when loading plot section [{}, {}, {}]: {}", chunkPos.x(), y, chunkPos.z(), errorText);
     }
 
     /**
@@ -161,7 +161,7 @@ public class ServerLevelPlot extends LevelPlot {
         final ServerLevel serverLevel = this.getSubLevel().getLevel();
 
         if (serverLevel.getChunkSource() instanceof final ServerChunkCache cache) {
-            cache.chunkMap.updatingChunkMap.remove(pos.toLong());
+            cache.chunkMap.updatingChunkMap.remove(pos.pack());
             cache.chunkMap.modified = true;
         }
 
@@ -246,7 +246,7 @@ public class ServerLevelPlot extends LevelPlot {
 
         // Update the chunk map if one exists
         final ServerChunkCache cache = level.getChunkSource();
-        cache.chunkMap.updatingChunkMap.put(globalChunkPos.toLong(), holder);
+        cache.chunkMap.updatingChunkMap.put(globalChunkPos.pack(), holder);
         cache.chunkMap.modified = true;
 
         super.addChunkHolder(localChunkPos, holder, initializeLighting);
@@ -287,7 +287,7 @@ public class ServerLevelPlot extends LevelPlot {
         final ServerSubLevel subLevel = this.getSubLevel();
         final PersistentEntitySectionManager<Entity> manager = subLevel.getLevel().entityManager;
         for (final PlotChunkHolder chunk : this.getLoadedChunks()) {
-            final Stream<EntitySection<Entity>> sections = manager.sectionStorage.getExistingSectionsInChunk(chunk.getPos().toLong());
+            final Stream<EntitySection<Entity>> sections = manager.sectionStorage.getExistingSectionsInChunk(chunk.getPos().pack());
 
             for (final EntitySection<Entity> section : sections.toList()) {
                 final List<Entity> entities = section.getEntities().toList();
@@ -355,8 +355,8 @@ public class ServerLevelPlot extends LevelPlot {
      */
     public CompoundTag save() {
         final CompoundTag tag = new CompoundTag();
-        tag.putInt("plot_x", this.plotPos.x - this.container.getOrigin().x());
-        tag.putInt("plot_z", this.plotPos.z - this.container.getOrigin().y);
+        tag.putInt("plot_x", this.plotPos.x() - this.container.getOrigin().x());
+        tag.putInt("plot_z", this.plotPos.z() - this.container.getOrigin().y);
         tag.putInt("log_size", this.logSize);
         tag.putString("biome", this.biome.location().toString());
         tag.putInt("data_version", DATA_VERSION);
@@ -431,7 +431,7 @@ public class ServerLevelPlot extends LevelPlot {
             SablePlotPlatform.INSTANCE.writeLightData(tag, level.registryAccess(), chunk);
             SablePlotPlatform.INSTANCE.writeChunkAttachments(tag, level.registryAccess(), chunk);
 
-            chunks.put(String.valueOf(ChunkPos.asLong(local.x, local.z)), chunkTag);
+            chunks.put(String.valueOf(ChunkPos.pack(local.x(), local.z())), chunkTag);
         }
 
         tag.put("chunks", chunks);
@@ -489,7 +489,7 @@ public class ServerLevelPlot extends LevelPlot {
                 final CompoundTag sectionTag = sectionsTag.getCompoundOrEmpty(sectionKey);
 
                 palettedContainer = BLOCK_STATE_CODEC.parse(NbtOps.INSTANCE, sectionTag.getCompoundOrEmpty("block_states"))
-                        .promotePartial(string -> logLoadingErrors(new ChunkPos(chunkPos), chunk.getSectionYFromSectionIndex(yIndex), string))
+                        .promotePartial(string -> logLoadingErrors(ChunkPos.containing(chunkPos), chunk.getSectionYFromSectionIndex(yIndex), string))
                         .getOrThrow(SerializableChunkData.ChunkReadException::new);
 
                 final Registry<Biome> biomeRegistry = level.registryAccess().lookupOrThrow(Registries.BIOME);
@@ -673,8 +673,8 @@ public class ServerLevelPlot extends LevelPlot {
                 final LevelChunkSection section = levelChunkSections[i];
                 if (!section.hasOnlyAir()) {
                     final int sectionY = chunk.getSectionYFromSectionIndex(i);
-                    physicsSystem.getTicketManager().addTicketForSection(level, SectionPos.of(global.x, sectionY, global.z));
-                    physicsSystem.getPipeline().handleChunkSectionAddition(section, global.x, sectionY, global.z, true);
+                    physicsSystem.getTicketManager().addTicketForSection(level, SectionPos.of(global.x(), sectionY, global.z()));
+                    physicsSystem.getPipeline().handleChunkSectionAddition(section, global.x(), sectionY, global.z(), true);
                 }
             }
         }

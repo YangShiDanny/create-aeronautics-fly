@@ -80,7 +80,7 @@ public class ActiveSableCompanion implements SableCompanion {
 
     @Override
     public @Nullable SubLevel getContaining(final Level level, final ChunkPos chunkPos) {
-        return this.getContaining(level, chunkPos.x, chunkPos.z);
+        return this.getContaining(level, chunkPos.x(), chunkPos.z());
     }
 
     @Override
@@ -111,7 +111,7 @@ public class ActiveSableCompanion implements SableCompanion {
     @Override
     public @Nullable SubLevel getContaining(final Entity entity) {
         final ChunkPos chunkPos = entity.chunkPosition();
-        return this.getContaining(entity.level(), chunkPos.x, chunkPos.z);
+        return this.getContaining(entity.level(), chunkPos.x(), chunkPos.z());
     }
 
     @Override
@@ -127,7 +127,7 @@ public class ActiveSableCompanion implements SableCompanion {
 
     @Override
     public @Nullable ClientSubLevel getContainingClient(final ChunkPos chunkPos) {
-        return (ClientSubLevel) this.getContaining(SableDistUtil.getClientLevel(), chunkPos.x, chunkPos.z);
+        return (ClientSubLevel) this.getContaining(SableDistUtil.getClientLevel(), chunkPos.x(), chunkPos.z());
     }
 
     @Override
@@ -158,7 +158,7 @@ public class ActiveSableCompanion implements SableCompanion {
     @Override
     public @Nullable ClientSubLevel getContainingClient(final Entity entity) {
         final ChunkPos chunkPos = entity.chunkPosition();
-        return (ClientSubLevel) this.getContaining(entity.level(), chunkPos.x, chunkPos.z);
+        return (ClientSubLevel) this.getContaining(entity.level(), chunkPos.x(), chunkPos.z());
     }
 
     @Override

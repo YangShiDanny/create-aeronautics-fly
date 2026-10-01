@@ -244,13 +244,13 @@ public class ZiplineClientManager implements InteractCallback {
     public static boolean canStartRiding(final ClosestQuery query, final Player player, final boolean sendMessage) {
         if (!canStartRidingDistance(query, player)) {
             if (sendMessage) {
-                player.displayClientMessage(SimLang.translate("zipline.too_far").color(SimColors.NUH_UH_RED).component(), true);
+                player.sendOverlayMessage(SimLang.translate("zipline.too_far").color(SimColors.NUH_UH_RED).component());
             }
             return false;
         }
         if (!canStartRidingSteepness(query, player)) {
             if (sendMessage) {
-                player.displayClientMessage(SimLang.translate("zipline.too_steep").color(SimColors.NUH_UH_RED).component(), true);
+                player.sendOverlayMessage(SimLang.translate("zipline.too_steep").color(SimColors.NUH_UH_RED).component());
             }
             return false;
         }

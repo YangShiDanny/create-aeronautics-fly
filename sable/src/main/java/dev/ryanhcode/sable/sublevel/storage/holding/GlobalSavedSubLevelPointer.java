@@ -11,8 +11,8 @@ import net.minecraft.world.level.ChunkPos;
 public record GlobalSavedSubLevelPointer(ChunkPos chunkPos, short storageIndex, short subLevelIndex) {
 
     public static final Codec<GlobalSavedSubLevelPointer> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Codec.INT.fieldOf("chunk_x").forGetter(x -> x.chunkPos().x),
-            Codec.INT.fieldOf("chunk_z").forGetter(x -> x.chunkPos().z),
+            Codec.INT.fieldOf("chunk_x").forGetter(x -> x.chunkPos().x()),
+            Codec.INT.fieldOf("chunk_z").forGetter(x -> x.chunkPos().z()),
             Codec.SHORT.fieldOf("storage_index").forGetter(GlobalSavedSubLevelPointer::storageIndex),
             Codec.SHORT.fieldOf("sub_level_index").forGetter(GlobalSavedSubLevelPointer::subLevelIndex)
     ).apply(Applicative.unbox(instance), (chunkX, chunkZ, storage, subLevel) -> new GlobalSavedSubLevelPointer(new ChunkPos(chunkX, chunkZ), storage, subLevel)));

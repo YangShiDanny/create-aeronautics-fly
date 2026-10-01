@@ -30,7 +30,7 @@ public interface BlockAndTintGetterMixin {
             final SubLevelContainer plotContainer = holder.sable$getPlotContainer();
 
             if (plotContainer.getLevel() instanceof ServerLevel) {
-                final LevelPlot plot = plotContainer.getPlot(new ChunkPos(blockPos));
+                final LevelPlot plot = plotContainer.getPlot(ChunkPos.containing(blockPos));
 
                 if (plot != null) {
                     engine = plot.getLightEngine();
@@ -53,7 +53,7 @@ public interface BlockAndTintGetterMixin {
             final SubLevelContainer plotContainer = holder.sable$getPlotContainer();
 
             if (plotContainer.getLevel() instanceof ServerLevel) {
-                final LevelPlot plot = plotContainer.getPlot(new ChunkPos(blockPos));
+                final LevelPlot plot = plotContainer.getPlot(ChunkPos.containing(blockPos));
 
                 if (plot != null) {
                     engine = plot.getLightEngine();

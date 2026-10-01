@@ -41,7 +41,7 @@ public class SubLevelStorage implements AutoCloseable {
     }
 
     private SubLevelRegionFile getRegionFile(final ChunkPos chunkPos) throws IOException {
-        final long longKey = ChunkPos.asLong(chunkPos.getRegionX(), chunkPos.getRegionZ());
+        final long longKey = ChunkPos.pack(chunkPos.getRegionX(), chunkPos.getRegionZ());
         final SubLevelRegionFile existingFile = this.regionCache.getAndMoveToFirst(longKey);
 
         if (existingFile != null) {

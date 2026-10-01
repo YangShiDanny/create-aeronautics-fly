@@ -91,7 +91,7 @@ public interface SableCompanion {
      */
     @Contract(pure = true)
     default @Nullable SubLevelAccess getContaining(final Level level, final ChunkPos chunkPos) {
-        return this.getContaining(level, chunkPos.x, chunkPos.z);
+        return this.getContaining(level, chunkPos.x(), chunkPos.z());
     }
 
     /**
@@ -721,7 +721,7 @@ public interface SableCompanion {
      */
     @Contract(pure = true)
     default boolean isInPlotGrid(final Level level, final ChunkPos chunkPos) {
-        return this.isInPlotGrid(level, chunkPos.x, chunkPos.z);
+        return this.isInPlotGrid(level, chunkPos.x(), chunkPos.z());
     }
 
     /**

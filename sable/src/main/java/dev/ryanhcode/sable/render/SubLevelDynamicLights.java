@@ -231,7 +231,7 @@ public final class SubLevelDynamicLights {
                 localPos.set(packedLocalPos);
                 final BlockState blockState = level.getBlockState(localPos);
                 if (blockState.isAir()
-                        || blockState.getLightBlock() <= 0 && !blockState.useShapeForLightOcclusion()) {
+                        || blockState.getLightDampening() <= 0 && !blockState.useShapeForLightOcclusion()) {
                     continue;
                 }
                 if (!projectPosition(level, pose, localPos, physicalCenter, physicalPos)) {
@@ -241,8 +241,8 @@ public final class SubLevelDynamicLights {
                 final long packedPhysicalPos = physicalPos.asLong();
                 final BlockState existingState = blocks.get(packedPhysicalPos);
                 if (existingState == null
-                        || blockState.getLightBlock() > existingState.getLightBlock()
-                        || blockState.getLightBlock() == existingState.getLightBlock()
+                        || blockState.getLightDampening() > existingState.getLightDampening()
+                        || blockState.getLightDampening() == existingState.getLightDampening()
                         && blockState.useShapeForLightOcclusion()
                         && !existingState.useShapeForLightOcclusion()) {
                     blocks.put(packedPhysicalPos, blockState);

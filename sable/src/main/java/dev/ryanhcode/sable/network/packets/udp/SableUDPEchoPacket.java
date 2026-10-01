@@ -18,6 +18,6 @@ public record SableUDPEchoPacket(String text) implements SableUDPPacket {
 
     @Override
     public void handleClient(final Level level) {
-        Minecraft.getInstance().player.displayClientMessage(Component.literal("Received UDP Test Ping: " + this.text), false);
+        Minecraft.getInstance().player.sendSystemMessage(Component.literal("Received UDP Test Ping: " + this.text));
     }
 }
