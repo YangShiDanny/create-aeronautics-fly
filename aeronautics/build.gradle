@@ -118,8 +118,10 @@ def entityCullingGametestLibraries = files(
 
 dependencies {
     // Exercise the renderer stack used by the distribution in rendered-client coverage.
-    add('modGametestRuntimeOnly', "maven.modrinth:sodium:${sodium_version}")
-    add('modGametestRuntimeOnly', "maven.modrinth:iris:${iris_version}")
-    add('modGametestRuntimeOnly', "maven.modrinth:entityculling:${entityculling_version}")
-    add('modGametestRuntimeOnly', entityCullingGametestLibraries)
+    // 26.1 Loom no longer remaps, so the old `mod<SourceSet>RuntimeOnly` configuration
+    // does not exist; mods go on the plain source-set runtime configuration instead.
+    add('gametestRuntimeOnly', "maven.modrinth:sodium:${sodium_version}")
+    add('gametestRuntimeOnly', "maven.modrinth:iris:${iris_version}")
+    add('gametestRuntimeOnly', "maven.modrinth:entityculling:${entityculling_version}")
+    add('gametestRuntimeOnly', entityCullingGametestLibraries)
 }
