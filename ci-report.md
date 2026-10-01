@@ -1,0 +1,955 @@
+# Compile report - Minecraft 26.1.2 port
+
+- commit: `8d017c7ee7c39a69ba2407470a1a3cf2c1843368`
+- ref: `port/26.1.2`
+- date: 2026-10-01T10:03:36Z
+
+## Result: BUILD FAILED
+
+Total `error:` lines: 189
+Total `error:` (unique): 122
+
+### Top error sources
+```
+      9 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:432: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:50: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:42: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:38: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:26: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:158: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:73: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:65: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:30: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:21: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:18: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:13: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:12: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:11: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin_interface/PrimaryLevelDataExtension.java:9: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:56: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:29: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:6: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:230: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:225: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:212: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:14: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:12: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:8: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:6: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/service/FabricSimInventoryService.java:22: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:4: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:43: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:50: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:49: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:48: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:11: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:10: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:99: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:98: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:97: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:741: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:27: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:26: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:25: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:24: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:23: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:5: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:4: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:43: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:42: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/blocks/steering_wheel/SteeringWheelRenderer.java:21: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/navigation_target/RenderableNavigationTarget.java:8: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/NavTableRenderer.java:19: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/jei/SimulatedJEI.java:15: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/create/SableCreateBlockEntityRenderer.java:26: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/create/KineticBlockEntityRenderer.java:9: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:8: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:6: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:7: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:6: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:31: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:30: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:29: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:17: error:
+      3 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:16: error:
+```
+
+### Errors grouped by package
+```
+     15 io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java
+      9 com/tterrag/registrate/builders/FluidBuilder.java
+      6 com/tterrag/registrate/fabric/FluidData.java
+      6 com/tterrag/registrate/builders/BlockBuilder.java
+      6 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:432: error: cannot find symbol
+      3   /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:432: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:73: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:65: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:30: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:21: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:18: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:13: error: package foundry.veil.impl.client.render.perspective does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:12: error: package foundry.veil.api.client.render.framebuffer does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:11: error: package foundry.veil.api.client.render does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin_interface/PrimaryLevelDataExtension.java:9: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:56: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:29: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:6: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:230: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:225: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:212: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:14: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:12: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:8: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:6: error: package team.reborn.energy.api does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/service/FabricSimInventoryService.java:22: error: package team.reborn.energy.api does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:4: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:43: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:50: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:49: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:48: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:11: error: package foundry.veil.api.client.render.framebuffer does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:10: error: package foundry.veil.api.client.render does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:99: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:98: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:97: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:741: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:27: error: package foundry.veil.api.client.render.post does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:26: error: package foundry.veil.api.client.render.post does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:25: error: package foundry.veil.api.client.render.framebuffer does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:24: error: package foundry.veil.api.client.render does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:23: error: package foundry.veil.api.client.render does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:5: error: package foundry.veil.api.event does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:4: error: package foundry.veil.api.client.render does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:43: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:42: error: package VeilRenderLevelStageEvent does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/blocks/steering_wheel/SteeringWheelRenderer.java:21: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/navigation_target/RenderableNavigationTarget.java:8: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/NavTableRenderer.java:19: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/jei/SimulatedJEI.java:15: error: package mezz.jei.library.ingredients.itemStacks does not exist
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/create/SableCreateBlockEntityRenderer.java:26: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/create/KineticBlockEntityRenderer.java:9: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:8: error: cannot find symbol
+      2 /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:6: error: cannot find symbol
+      1   /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:73: error: cannot find symbol
+      1   /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:65: error: cannot find symbol
+      1   /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:30: error: cannot find symbol
+      1   /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:21: error: cannot find symbol
+      1   /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:18: error: cannot find symbol
+      1   /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:13: error: package foundry.veil.impl.client.render.perspective does not exist
+```
+
+### Unique errors (first 800)
+```
+  simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:16: error: cannot find symbol
+  simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:17: error: cannot find symbol
+  simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:29: error: cannot find symbol
+  simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:30: error: cannot find symbol
+  simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:31: error: cannot find symbol
+  simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:6: error: cannot find symbol
+  simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:7: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:6: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:8: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/compat/create/KineticBlockEntityRenderer.java:9: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/compat/create/SableCreateBlockEntityRenderer.java:26: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/compat/jei/SimulatedJEI.java:15: error: package mezz.jei.library.ingredients.itemStacks does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/NavTableRenderer.java:19: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/navigation_target/RenderableNavigationTarget.java:8: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/blocks/steering_wheel/SteeringWheelRenderer.java:21: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:42: error: package VeilRenderLevelStageEvent does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:43: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:4: error: package foundry.veil.api.client.render does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:5: error: package foundry.veil.api.event does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:23: error: package foundry.veil.api.client.render does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:24: error: package foundry.veil.api.client.render does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:25: error: package foundry.veil.api.client.render.framebuffer does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:26: error: package foundry.veil.api.client.render.post does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:27: error: package foundry.veil.api.client.render.post does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:432: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:741: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:97: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:98: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:99: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:10: error: package foundry.veil.api.client.render does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:11: error: package foundry.veil.api.client.render.framebuffer does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:48: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:49: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:50: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:43: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:4: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/fabric/service/FabricSimInventoryService.java:22: error: package team.reborn.energy.api does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:6: error: package team.reborn.energy.api does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:8: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:12: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:14: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:212: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:225: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:230: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:6: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:29: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:56: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/mixin_interface/PrimaryLevelDataExtension.java:9: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:11: error: package foundry.veil.api.client.render does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:12: error: package foundry.veil.api.client.render.framebuffer does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:13: error: package foundry.veil.impl.client.render.perspective does not exist
+  simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:18: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:21: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:30: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:65: error: cannot find symbol
+  simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:73: error: cannot find symbol
+  simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:158: error: cannot find symbol
+  simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:26: error: cannot find symbol
+  simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:38: error: cannot find symbol
+  simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:42: error: cannot find symbol
+  simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:50: error: cannot find symbol
+simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:16: error: cannot find symbol
+simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:17: error: cannot find symbol
+simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:29: error: cannot find symbol
+simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:30: error: cannot find symbol
+simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:31: error: cannot find symbol
+simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:6: error: cannot find symbol
+simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:7: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:6: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:8: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/compat/create/KineticBlockEntityRenderer.java:9: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/compat/create/SableCreateBlockEntityRenderer.java:26: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/compat/jei/SimulatedJEI.java:15: error: package mezz.jei.library.ingredients.itemStacks does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/NavTableRenderer.java:19: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/navigation_target/RenderableNavigationTarget.java:8: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/blocks/steering_wheel/SteeringWheelRenderer.java:21: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:42: error: package VeilRenderLevelStageEvent does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:43: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:4: error: package foundry.veil.api.client.render does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:5: error: package foundry.veil.api.event does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:23: error: package foundry.veil.api.client.render does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:24: error: package foundry.veil.api.client.render does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:25: error: package foundry.veil.api.client.render.framebuffer does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:26: error: package foundry.veil.api.client.render.post does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:27: error: package foundry.veil.api.client.render.post does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:432: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:741: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:97: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:98: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:99: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:10: error: package foundry.veil.api.client.render does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:11: error: package foundry.veil.api.client.render.framebuffer does not exist
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:48: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:49: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:50: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:43: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:4: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/fabric/service/FabricSimInventoryService.java:22: error: package team.reborn.energy.api does not exist
+simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:6: error: package team.reborn.energy.api does not exist
+simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:8: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:12: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:14: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:212: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:225: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:230: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:6: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:29: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:56: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/mixin_interface/PrimaryLevelDataExtension.java:9: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:11: error: package foundry.veil.api.client.render does not exist
+simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:12: error: package foundry.veil.api.client.render.framebuffer does not exist
+simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:13: error: package foundry.veil.impl.client.render.perspective does not exist
+simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:18: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:21: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:30: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:65: error: cannot find symbol
+simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:73: error: cannot find symbol
+simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:158: error: cannot find symbol
+simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:26: error: cannot find symbol
+simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:38: error: cannot find symbol
+simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:42: error: cannot find symbol
+simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:50: error: cannot find symbol
+```
+
+### Missing symbols (top 120)
+```
+```
+
+### Gradle failure block
+```
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':simulated:compileJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+> Compilation failed; see the compiler output below.
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:158: error: cannot find symbol
+          public ConfiguredModelList getModels() {
+                 ^
+    symbol:   class ConfiguredModelList
+    location: class PartialBlockstate
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:26: error: cannot find symbol
+      private final Map<PartialBlockstate, ConfiguredModelList> models = new LinkedHashMap<>();
+                                           ^
+    symbol:   class ConfiguredModelList
+    location: class VariantBlockStateBuilder
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:38: error: cannot find symbol
+      public Map<PartialBlockstate, ConfiguredModelList> getModels() {
+                                    ^
+    symbol:   class ConfiguredModelList
+    location: class VariantBlockStateBuilder
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:42: error: cannot find symbol
+      public ConfiguredModelList get(PartialBlockstate state) {
+             ^
+    symbol:   class ConfiguredModelList
+    location: class VariantBlockStateBuilder
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:50: error: cannot find symbol
+      public void setModels(PartialBlockstate state, ConfiguredModelList models) {
+                                                     ^
+    symbol:   class ConfiguredModelList
+    location: class VariantBlockStateBuilder
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:16: error: cannot find symbol
+  import net.fabricmc.fabric.api.client.rendering.v1.ChunkSectionLayerMap;
+                                                    ^
+    symbol:   class ChunkSectionLayerMap
+    location: package net.fabricmc.fabric.api.client.rendering.v1
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:17: error: cannot find symbol
+  import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+                                                    ^
+    symbol:   class ColorProviderRegistry
+    location: package net.fabricmc.fabric.api.client.rendering.v1
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:29: error: cannot find symbol
+  import net.fabricmc.fabric.api.client.rendering.v1.ChunkSectionLayerMap;
+                                                    ^
+    symbol:   class ChunkSectionLayerMap
+    location: package net.fabricmc.fabric.api.client.rendering.v1
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:30: error: cannot find symbol
+  import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+                                                       ^
+    symbol:   class FluidRenderHandlerRegistry
+    location: package net.fabricmc.fabric.api.client.render.fluid.v1
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:31: error: cannot find symbol
+  import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+                                                       ^
+    symbol:   class SimpleFluidRenderHandler
+    location: package net.fabricmc.fabric.api.client.render.fluid.v1
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:6: error: cannot find symbol
+  import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+                                                       ^
+    symbol:   class FluidRenderHandlerRegistry
+    location: package net.fabricmc.fabric.api.client.render.fluid.v1
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:7: error: cannot find symbol
+  import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+                                                       ^
+    symbol:   class SimpleFluidRenderHandler
+    location: package net.fabricmc.fabric.api.client.render.fluid.v1
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:4: error: cannot find symbol
+  import net.minecraft.advancements.criterion.CriterionValidator;
+                                             ^
+    symbol:   class CriterionValidator
+    location: package net.minecraft.advancements.criterion
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:43: error: cannot find symbol
+          public void validate(@NotNull final CriterionValidator criterionValidator) {}
+                                              ^
+    symbol:   class CriterionValidator
+    location: class Instance
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:6: error: cannot find symbol
+  import net.minecraft.client.renderer.item.BlockModelWrapper;
+                                           ^
+    symbol:   class BlockModelWrapper
+    location: package net.minecraft.client.renderer.item
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:8: error: cannot find symbol
+  import net.minecraft.client.resources.model.BlockModelRotation;
+                                             ^
+    symbol:   class BlockModelRotation
+    location: package net.minecraft.client.resources.model
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:29: error: cannot find symbol
+  	@Shadow private EnderDragonFight.Data endDragonFightData;
+  	                                ^
+    symbol:   class Data
+    location: class EnderDragonFight
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:56: error: cannot find symbol
+  	public void setEndDragonFight(final EnderDragonFight.Data endDragonFight) {
+  	                                                    ^
+    symbol:   class Data
+    location: class EnderDragonFight
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin_interface/PrimaryLevelDataExtension.java:9: error: cannot find symbol
+  	void setEndDragonFight(EnderDragonFight.Data endDragonFight);
+  	                                       ^
+    symbol:   class Data
+    location: class EnderDragonFight
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/create/SableCreateBlockEntityRenderer.java:26: error: cannot find symbol
+  import net.minecraft.client.renderer.entity.ItemRenderer;
+                                             ^
+    symbol:   class ItemRenderer
+    location: package net.minecraft.client.renderer.entity
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/create/KineticBlockEntityRenderer.java:9: error: cannot find symbol
+  import net.minecraft.client.renderer.ItemBlockRenderTypes;
+                                      ^
+    symbol:   class ItemBlockRenderTypes
+    location: package net.minecraft.client.renderer
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:18: error: cannot find symbol
+  import net.minecraft.client.renderer.LightTexture;
+                                      ^
+    symbol:   class LightTexture
+    location: package net.minecraft.client.renderer
+  /home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:21: error: cannot find symbol
+  import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+                                            ^
+    symbol:   class BlockRenderDispatcher
+    location: package net.minecraft.client.renderer.block
+```
+
+### What went wrong
+```
+```
+
+### Raw log head (first 150 lines)
+```
+Fetching distribution.
+Downloading https://services.gradle.org/distributions/gradle-9.7.1-bin.zip
+..............10%..............20%...............30%..............40%...............50%..............60%...............70%..............80%..............90%...............100%
+
+Welcome to Gradle 9.7.1!
+
+Here are the highlights of this release:
+ - Isolated Projects graduates to incubating
+ - Broader Configuration Cache compatibility
+ - Resilient Sync helps you fix broken builds
+ - More source locations in problem reports
+
+For more details see https://docs.gradle.org/9.7.1/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :aeronautics
+Fabric Loom: 1.18.2
+
+> Configure project :sable
+Fabric Loom: 1.18.2
+
+> Configure project :simulated
+Fabric Loom: 1.18.2
+
+> Configure project :offroad
+Fabric Loom: 1.18.2
+
+> Task :sable:compileJava
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/sable/src/main/java/dev/ryanhcode/sable/compatibility/scalablelux/ScalableLuxCompat.java:91: warning: [removal] getLightEngine() in StarLightLightingProvider has been deprecated and marked for removal
+        return provider.getLightEngine();
+                       ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+
+> Task :simulated:compileJava
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:158: error: cannot find symbol
+        public ConfiguredModelList getModels() {
+               ^
+  symbol:   class ConfiguredModelList
+  location: class PartialBlockstate
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:26: error: cannot find symbol
+    private final Map<PartialBlockstate, ConfiguredModelList> models = new LinkedHashMap<>();
+                                         ^
+  symbol:   class ConfiguredModelList
+  location: class VariantBlockStateBuilder
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:38: error: cannot find symbol
+    public Map<PartialBlockstate, ConfiguredModelList> getModels() {
+                                  ^
+  symbol:   class ConfiguredModelList
+  location: class VariantBlockStateBuilder
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:42: error: cannot find symbol
+    public ConfiguredModelList get(PartialBlockstate state) {
+           ^
+  symbol:   class ConfiguredModelList
+  location: class VariantBlockStateBuilder
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/io/github/fabricators_of_create/porting_lib/models/generators/VariantBlockStateBuilder.java:50: error: cannot find symbol
+    public void setModels(PartialBlockstate state, ConfiguredModelList models) {
+                                                   ^
+  symbol:   class ConfiguredModelList
+  location: class VariantBlockStateBuilder
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:16: error: cannot find symbol
+import net.fabricmc.fabric.api.client.rendering.v1.ChunkSectionLayerMap;
+                                                  ^
+  symbol:   class ChunkSectionLayerMap
+  location: package net.fabricmc.fabric.api.client.rendering.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:17: error: cannot find symbol
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+                                                  ^
+  symbol:   class ColorProviderRegistry
+  location: package net.fabricmc.fabric.api.client.rendering.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:29: error: cannot find symbol
+import net.fabricmc.fabric.api.client.rendering.v1.ChunkSectionLayerMap;
+                                                  ^
+  symbol:   class ChunkSectionLayerMap
+  location: package net.fabricmc.fabric.api.client.rendering.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:30: error: cannot find symbol
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+                                                     ^
+  symbol:   class FluidRenderHandlerRegistry
+  location: package net.fabricmc.fabric.api.client.render.fluid.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:31: error: cannot find symbol
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+                                                     ^
+  symbol:   class SimpleFluidRenderHandler
+  location: package net.fabricmc.fabric.api.client.render.fluid.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:6: error: cannot find symbol
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+                                                     ^
+  symbol:   class FluidRenderHandlerRegistry
+  location: package net.fabricmc.fabric.api.client.render.fluid.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:7: error: cannot find symbol
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+                                                     ^
+  symbol:   class SimpleFluidRenderHandler
+  location: package net.fabricmc.fabric.api.client.render.fluid.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:6: error: package team.reborn.energy.api does not exist
+import team.reborn.energy.api.EnergyStorage;
+                             ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:8: error: cannot find symbol
+public final class SingleBatteryStorage extends SnapshotParticipant<Integer> implements EnergyStorage {
+                                                                                        ^
+  symbol: class EnergyStorage
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/service/FabricSimInventoryService.java:22: error: package team.reborn.energy.api does not exist
+import team.reborn.energy.api.EnergyStorage;
+                             ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:4: error: cannot find symbol
+import net.minecraft.advancements.criterion.CriterionValidator;
+                                           ^
+  symbol:   class CriterionValidator
+  location: package net.minecraft.advancements.criterion
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:43: error: cannot find symbol
+        public void validate(@NotNull final CriterionValidator criterionValidator) {}
+                                            ^
+  symbol:   class CriterionValidator
+  location: class Instance
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:6: error: cannot find symbol
+import net.minecraft.client.renderer.item.BlockModelWrapper;
+                                         ^
+  symbol:   class BlockModelWrapper
+  location: package net.minecraft.client.renderer.item
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:8: error: cannot find symbol
+import net.minecraft.client.resources.model.BlockModelRotation;
+                                           ^
+  symbol:   class BlockModelRotation
+  location: package net.minecraft.client.resources.model
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:29: error: cannot find symbol
+	@Shadow private EnderDragonFight.Data endDragonFightData;
+	                                ^
+  symbol:   class Data
+  location: class EnderDragonFight
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:56: error: cannot find symbol
+	public void setEndDragonFight(final EnderDragonFight.Data endDragonFight) {
+	                                                    ^
+  symbol:   class Data
+  location: class EnderDragonFight
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin_interface/PrimaryLevelDataExtension.java:9: error: cannot find symbol
+	void setEndDragonFight(EnderDragonFight.Data endDragonFight);
+	                                       ^
+  symbol:   class Data
+  location: class EnderDragonFight
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/create/SableCreateBlockEntityRenderer.java:26: error: cannot find symbol
+import net.minecraft.client.renderer.entity.ItemRenderer;
+                                           ^
+  symbol:   class ItemRenderer
+  location: package net.minecraft.client.renderer.entity
+```
+
+### Raw log tail (last 400 lines)
+```
+  location: class VariantBlockStateBuilder
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:16: error: cannot find symbol
+import net.fabricmc.fabric.api.client.rendering.v1.ChunkSectionLayerMap;
+                                                  ^
+  symbol:   class ChunkSectionLayerMap
+  location: package net.fabricmc.fabric.api.client.rendering.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/BlockBuilder.java:17: error: cannot find symbol
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+                                                  ^
+  symbol:   class ColorProviderRegistry
+  location: package net.fabricmc.fabric.api.client.rendering.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:29: error: cannot find symbol
+import net.fabricmc.fabric.api.client.rendering.v1.ChunkSectionLayerMap;
+                                                  ^
+  symbol:   class ChunkSectionLayerMap
+  location: package net.fabricmc.fabric.api.client.rendering.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:30: error: cannot find symbol
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+                                                     ^
+  symbol:   class FluidRenderHandlerRegistry
+  location: package net.fabricmc.fabric.api.client.render.fluid.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/builders/FluidBuilder.java:31: error: cannot find symbol
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+                                                     ^
+  symbol:   class SimpleFluidRenderHandler
+  location: package net.fabricmc.fabric.api.client.render.fluid.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:6: error: cannot find symbol
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+                                                     ^
+  symbol:   class FluidRenderHandlerRegistry
+  location: package net.fabricmc.fabric.api.client.render.fluid.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/com/tterrag/registrate/fabric/FluidData.java:7: error: cannot find symbol
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+                                                     ^
+  symbol:   class SimpleFluidRenderHandler
+  location: package net.fabricmc.fabric.api.client.render.fluid.v1
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:6: error: package team.reborn.energy.api does not exist
+import team.reborn.energy.api.EnergyStorage;
+                             ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/transfer/SingleBatteryStorage.java:8: error: cannot find symbol
+public final class SingleBatteryStorage extends SnapshotParticipant<Integer> implements EnergyStorage {
+                                                                                        ^
+  symbol: class EnergyStorage
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/fabric/service/FabricSimInventoryService.java:22: error: package team.reborn.energy.api does not exist
+import team.reborn.energy.api.EnergyStorage;
+                             ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:4: error: cannot find symbol
+import net.minecraft.advancements.criterion.CriterionValidator;
+                                           ^
+  symbol:   class CriterionValidator
+  location: package net.minecraft.advancements.criterion
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/data/advancements/SimpleSimulatedTrigger.java:43: error: cannot find symbol
+        public void validate(@NotNull final CriterionValidator criterionValidator) {}
+                                            ^
+  symbol:   class CriterionValidator
+  location: class Instance
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:6: error: cannot find symbol
+import net.minecraft.client.renderer.item.BlockModelWrapper;
+                                         ^
+  symbol:   class BlockModelWrapper
+  location: package net.minecraft.client.renderer.item
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/client/model/BakedItemModelPart.java:8: error: cannot find symbol
+import net.minecraft.client.resources.model.BlockModelRotation;
+                                           ^
+  symbol:   class BlockModelRotation
+  location: package net.minecraft.client.resources.model
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:29: error: cannot find symbol
+	@Shadow private EnderDragonFight.Data endDragonFightData;
+	                                ^
+  symbol:   class Data
+  location: class EnderDragonFight
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin/world_presets/PrimaryLevelDataMixin.java:56: error: cannot find symbol
+	public void setEndDragonFight(final EnderDragonFight.Data endDragonFight) {
+	                                                    ^
+  symbol:   class Data
+  location: class EnderDragonFight
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/mixin_interface/PrimaryLevelDataExtension.java:9: error: cannot find symbol
+	void setEndDragonFight(EnderDragonFight.Data endDragonFight);
+	                                       ^
+  symbol:   class Data
+  location: class EnderDragonFight
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/create/SableCreateBlockEntityRenderer.java:26: error: cannot find symbol
+import net.minecraft.client.renderer.entity.ItemRenderer;
+                                           ^
+  symbol:   class ItemRenderer
+  location: package net.minecraft.client.renderer.entity
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/create/KineticBlockEntityRenderer.java:9: error: cannot find symbol
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+                                    ^
+  symbol:   class ItemBlockRenderTypes
+  location: package net.minecraft.client.renderer
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/compat/jei/SimulatedJEI.java:15: error: package mezz.jei.library.ingredients.itemStacks does not exist
+import mezz.jei.library.ingredients.itemStacks.TypedItemStack;
+                                              ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:11: error: package foundry.veil.api.client.render does not exist
+import foundry.veil.api.client.render.VeilRenderSystem;
+                                     ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:12: error: package foundry.veil.api.client.render.framebuffer does not exist
+import foundry.veil.api.client.render.framebuffer.AdvancedFbo;
+                                                 ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:13: error: package foundry.veil.impl.client.render.perspective does not exist
+import foundry.veil.impl.client.render.perspective.LevelPerspectiveCamera;
+                                                  ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:18: error: cannot find symbol
+import net.minecraft.client.renderer.LightTexture;
+                                    ^
+  symbol:   class LightTexture
+  location: package net.minecraft.client.renderer
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:21: error: cannot find symbol
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+                                          ^
+  symbol:   class BlockRenderDispatcher
+  location: package net.minecraft.client.renderer.block
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:30: error: cannot find symbol
+    private static final LevelPerspectiveCamera CAMERA = new LevelPerspectiveCamera();
+                         ^
+  symbol:   class LevelPerspectiveCamera
+  location: class SimpleSubLevelGroupRenderer
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:65: error: cannot find symbol
+    public static void renderChain(final SubLevel subLevel, final AdvancedFbo fbo, final Matrix4f modelView, final Matrix4f projectionMat, final Vector3d cameraPosition, final Quaternionf orientation, final float partialTicks) {
+                                                                  ^
+  symbol:   class AdvancedFbo
+  location: class SimpleSubLevelGroupRenderer
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/util/SimpleSubLevelGroupRenderer.java:73: error: cannot find symbol
+    public static void renderGroup(final ClientLevel level, final Collection<ClientSubLevel> subLevels, final AdvancedFbo fbo, final Matrix4f modelView, final Matrix4f projectionMat, final Vector3d cameraPosition, final Quaternionf orientation, final float partialTicks, final boolean renderPlayers) {
+                                                                                                              ^
+  symbol:   class AdvancedFbo
+  location: class SimpleSubLevelGroupRenderer
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:23: error: package foundry.veil.api.client.render does not exist
+import foundry.veil.api.client.render.VeilLevelPerspectiveRenderer;
+                                     ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:24: error: package foundry.veil.api.client.render does not exist
+import foundry.veil.api.client.render.VeilRenderSystem;
+                                     ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:25: error: package foundry.veil.api.client.render.framebuffer does not exist
+import foundry.veil.api.client.render.framebuffer.AdvancedFbo;
+                                                 ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:26: error: package foundry.veil.api.client.render.post does not exist
+import foundry.veil.api.client.render.post.PostPipeline;
+                                          ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:27: error: package foundry.veil.api.client.render.post does not exist
+import foundry.veil.api.client.render.post.PostProcessingManager;
+                                          ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:97: error: cannot find symbol
+    private AdvancedFbo fbo;
+            ^
+  symbol:   class AdvancedFbo
+  location: class DiagramScreen
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:98: error: cannot find symbol
+    private AdvancedFbo outlineFbo;
+            ^
+  symbol:   class AdvancedFbo
+  location: class DiagramScreen
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:99: error: cannot find symbol
+    private AdvancedFbo finalFbo;
+            ^
+  symbol:   class AdvancedFbo
+  location: class DiagramScreen
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:10: error: package foundry.veil.api.client.render does not exist
+import foundry.veil.api.client.render.VeilLevelPerspectiveRenderer;
+                                     ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:11: error: package foundry.veil.api.client.render.framebuffer does not exist
+import foundry.veil.api.client.render.framebuffer.AdvancedFbo;
+                                                 ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:432: error: cannot find symbol
+    public static void draw(final SubLevel subLevel, final float partialTicks, final Quaternionf localOrientation, final Matrix4f projMatrix, final Vector3d cameraPos, final float inWidth, final float inHeight, final AdvancedFbo fbo, final AdvancedFbo outlineFbo, final AdvancedFbo finalFbo, final float paletteOffset, final float fadeScale, final int lineColor, final int lineShadowColor) {
+                                                                                                                                                                                                                         ^
+  symbol:   class AdvancedFbo
+  location: class DiagramScreen
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:432: error: cannot find symbol
+    public static void draw(final SubLevel subLevel, final float partialTicks, final Quaternionf localOrientation, final Matrix4f projMatrix, final Vector3d cameraPos, final float inWidth, final float inHeight, final AdvancedFbo fbo, final AdvancedFbo outlineFbo, final AdvancedFbo finalFbo, final float paletteOffset, final float fadeScale, final int lineColor, final int lineShadowColor) {
+                                                                                                                                                                                                                                                ^
+  symbol:   class AdvancedFbo
+  location: class DiagramScreen
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:432: error: cannot find symbol
+    public static void draw(final SubLevel subLevel, final float partialTicks, final Quaternionf localOrientation, final Matrix4f projMatrix, final Vector3d cameraPos, final float inWidth, final float inHeight, final AdvancedFbo fbo, final AdvancedFbo outlineFbo, final AdvancedFbo finalFbo, final float paletteOffset, final float fadeScale, final int lineColor, final int lineShadowColor) {
+                                                                                                                                                                                                                                                                              ^
+  symbol:   class AdvancedFbo
+  location: class DiagramScreen
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramScreen.java:741: error: cannot find symbol
+    public static void renderFBO(final GuiGraphicsExtractor graphics, final AdvancedFbo fbo, final int width, final int height) {
+                                                                            ^
+  symbol:   class AdvancedFbo
+  location: class DiagramScreen
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:48: error: cannot find symbol
+    private AdvancedFbo fbo;
+            ^
+  symbol:   class AdvancedFbo
+  location: class DiagramStickyNote
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:49: error: cannot find symbol
+    private AdvancedFbo outlineFbo;
+            ^
+  symbol:   class AdvancedFbo
+  location: class DiagramStickyNote
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/entities/diagram/screen/DiagramStickyNote.java:50: error: cannot find symbol
+    private AdvancedFbo finalFbo;
+            ^
+  symbol:   class AdvancedFbo
+  location: class DiagramStickyNote
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:4: error: package foundry.veil.api.client.render does not exist
+import foundry.veil.api.client.render.MatrixStack;
+                                     ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:5: error: package foundry.veil.api.event does not exist
+import foundry.veil.api.event.VeilRenderLevelStageEvent;
+                             ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:42: error: package VeilRenderLevelStageEvent does not exist
+    public static void renderShadowMap(VeilRenderLevelStageEvent.Stage stage, LevelRenderer levelRenderer,
+                                                                ^
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/end_sea/EndSeaShadowRenderer.java:43: error: cannot find symbol
+                                       MultiBufferSource.BufferSource bufferSource, MatrixStack poseStack,
+                                                                                    ^
+  symbol:   class MatrixStack
+  location: class EndSeaShadowRenderer
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/NavTableRenderer.java:19: error: cannot find symbol
+import net.minecraft.client.renderer.entity.ItemRenderer;
+                                           ^
+  symbol:   class ItemRenderer
+  location: package net.minecraft.client.renderer.entity
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/blocks/nav_table/navigation_target/RenderableNavigationTarget.java:8: error: cannot find symbol
+import net.minecraft.client.renderer.entity.ItemRenderer;
+                                           ^
+  symbol:   class ItemRenderer
+  location: package net.minecraft.client.renderer.entity
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/content/blocks/steering_wheel/SteeringWheelRenderer.java:21: error: cannot find symbol
+import net.minecraft.client.renderer.block.model.BlockModelPart;
+                                                ^
+  symbol:   class BlockModelPart
+  location: package net.minecraft.client.renderer.block.model
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:6: error: cannot find symbol
+import com.mojang.blaze3d.platform.DepthTestFunction;
+                                  ^
+  symbol:   class DepthTestFunction
+  location: package com.mojang.blaze3d.platform
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:12: error: cannot find symbol
+import com.zurrtum.create.client.foundation.render.RenderTypes;
+                                                  ^
+  symbol:   class RenderTypes
+  location: package com.zurrtum.create.client.foundation.render
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:14: error: cannot find symbol
+import net.minecraft.client.renderer.RenderStateShard;
+                                    ^
+  symbol:   class RenderStateShard
+  location: package net.minecraft.client.renderer
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:212: error: cannot find symbol
+    private static RenderType.CompositeState compositeState(final Identifier texture,
+                             ^
+  symbol:   class CompositeState
+  location: class RenderType
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:225: error: cannot find symbol
+                                     final RenderType.CompositeState state) {
+                                                     ^
+  symbol:   class CompositeState
+  location: class RenderType
+/home/runner/work/create-aeronautics-fly/create-aeronautics-fly/simulated/src/main/java/dev/simulated_team/simulated/index/SimRenderTypes.java:230: error: cannot find symbol
+                                           final RenderType.CompositeState state) {
+                                                           ^
+  symbol:   class CompositeState
+  location: class RenderType
+63 errors
+	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:88)
+	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:49)
+	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.delegateAndHandleErrors(NormalizingJavaCompiler.java:98)
+	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.execute(NormalizingJavaCompiler.java:52)
+	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.execute(NormalizingJavaCompiler.java:38)
+	at org.gradle.api.internal.tasks.compile.AnnotationProcessorDiscoveringCompiler.execute(AnnotationProcessorDiscoveringCompiler.java:52)
+	at org.gradle.api.internal.tasks.compile.AnnotationProcessorDiscoveringCompiler.execute(AnnotationProcessorDiscoveringCompiler.java:38)
+	at org.gradle.api.internal.tasks.compile.ModuleApplicationNameWritingCompiler.execute(ModuleApplicationNameWritingCompiler.java:46)
+	at org.gradle.api.internal.tasks.compile.ModuleApplicationNameWritingCompiler.execute(ModuleApplicationNameWritingCompiler.java:36)
+	at org.gradle.jvm.toolchain.internal.DefaultToolchainJavaCompiler.execute(DefaultToolchainJavaCompiler.java:57)
+	at org.gradle.api.tasks.compile.JavaCompile.lambda$createToolchainCompiler$0(JavaCompile.java:207)
+	at org.gradle.api.internal.tasks.compile.CleaningJavaCompiler.execute(CleaningJavaCompiler.java:53)
+	at org.gradle.api.internal.tasks.compile.incremental.IncrementalCompilerFactory.lambda$createRebuildAllCompiler$0(IncrementalCompilerFactory.java:55)
+	at org.gradle.api.internal.tasks.compile.incremental.SelectiveCompiler.execute(SelectiveCompiler.java:70)
+	at org.gradle.api.internal.tasks.compile.incremental.SelectiveCompiler.execute(SelectiveCompiler.java:44)
+	at org.gradle.api.internal.tasks.compile.incremental.IncrementalResultStoringCompiler.execute(IncrementalResultStoringCompiler.java:66)
+	at org.gradle.api.internal.tasks.compile.incremental.IncrementalResultStoringCompiler.execute(IncrementalResultStoringCompiler.java:52)
+	at org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler$CompileOperation.call(CompileJavaBuildOperationReportingCompiler.java:78)
+	at org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler$CompileOperation.call(CompileJavaBuildOperationReportingCompiler.java:52)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler.execute(CompileJavaBuildOperationReportingCompiler.java:49)
+	at org.gradle.api.tasks.compile.JavaCompile.performCompilation(JavaCompile.java:225)
+	at org.gradle.api.tasks.compile.JavaCompile.performIncrementalCompilation(JavaCompile.java:166)
+	at org.gradle.api.tasks.compile.JavaCompile.compile(JavaCompile.java:151)
+	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+	at org.gradle.api.internal.project.taskfactory.IncrementalTaskAction.doExecute(IncrementalTaskAction.java:45)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+	at org.gradle.api.internal.project.taskfactory.IncrementalTaskAction.execute(IncrementalTaskAction.java:26)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:259)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
+	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:167)
+	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:137)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:134)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:134)
+	at org.gradle.internal.execution.steps.ExecuteStep$Mutable.execute(ExecuteStep.java:80)
+	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:67)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:39)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:42)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:24)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:189)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeAndStoreInCache(BuildCacheStep.java:145)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$executeWithCache$3(BuildCacheStep.java:104)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$executeWithCache$1(BuildCacheStep.java:104)
+	at org.gradle.internal.Try$Success.map(Try.java:170)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithCache(BuildCacheStep.java:88)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$0(BuildCacheStep.java:75)
+	at org.gradle.internal.Either$Left.fold(Either.java:116)
+	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:46)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:35)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:70)
+	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:32)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:69)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:37)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:79)
+	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:65)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:105)
+	at org.gradle.internal.execution.steps.ValidateStep$Mutable.execute(ValidateStep.java:65)
+	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.executeMutable(CaptureMutableStateBeforeExecutionStep.java:86)
+	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:65)
+	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:45)
+	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeWithNonEmptySources(SkipEmptyMutableWorkStep.java:210)
+	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:90)
+	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:53)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:36)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:23)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$executeMutable$0(AssignMutableWorkspaceStep.java:34)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:30)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:21)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:56)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:38)
+	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+	... 30 more
+
+
+BUILD FAILED in 1m 21s
+2 actionable tasks: 2 executed
+```
