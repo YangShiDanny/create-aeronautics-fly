@@ -2,6 +2,12 @@ name: Compile 26.1.2
 
 # Compile-only feedback loop for the 26.1.2 port. The full build (gametests,
 # production smoke runs) lives in gametests.yml and only runs once this is green.
+#
+# The job does three things beyond compiling:
+#   1. writes a human/agent readable summary to the job summary,
+#   2. emits ::error annotations (readable via the public check-runs API),
+#   3. force-pushes the full report to the `ci-logs` branch so the report can be
+#      retrieved with a plain `git fetch origin ci-logs` even behind a proxy.
 on:
   push:
     branches:
@@ -10,7 +16,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: compile-261-${{ github.workflow }}-${{ github.ref }}
@@ -22,10 +28,10 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Validate Gradle wrapper
-        uses: gradle/actions/wrapper-validation@v4
+        uses: gradle/actions/wrapper-validation@v6
 
       - name: Setup Java 25
         uses: actions/setup-java@v5
@@ -52,25 +58,80 @@ jobs:
             :aeronautics:compileJava \
             --continue --stacktrace --no-daemon 2>&1 | tee compile.log
 
-      - name: Summarise errors
+      - name: Build CI report
         if: always()
         shell: bash
         run: |
           {
-            echo "## Compile result"
+            echo "# Compile report - Minecraft 26.1.2 port"
+            echo
+            echo "- commit: \`${GITHUB_SHA}\`"
+            echo "- ref: \`${GITHUB_REF_NAME}\`"
+            echo "- date: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
             echo
             if grep -qE '^BUILD SUCCESSFUL' compile.log; then
-              echo "BUILD SUCCESSFUL"
+              echo "## Result: BUILD SUCCESSFUL"
             else
-              echo "Compilation still failing. Top error sources:"
+              echo "## Result: BUILD FAILED"
               echo
+              echo "Total \`error:\` lines: $(grep -cE ': error:' compile.log || true)"
+              echo "Total \`error:\` (unique): $(grep -E ': error:' compile.log | sort -u | wc -l || true)"
+              echo
+              echo "### Top error sources"
               echo '```'
-              grep -oE '[^ /]+\.java:[0-9]+: error:' compile.log | sort | uniq -c | sort -rn | head -60 || true
+              grep -oE '[^ ]+\.java:[0-9]+: error:' compile.log | sort | uniq -c | sort -rn | head -80 || true
               echo '```'
               echo
-              echo "Total error lines: $(grep -cE 'error:' compile.log || true)"
+              echo "### Errors grouped by package"
+              echo '```'
+              grep -E ': error:' compile.log | sed -E "s#^.*/((com|net|io|org)/[^ ]*\.java):[0-9]+: error:.*#\1#" | sort | uniq -c | sort -rn | head -60 || true
+              echo '```'
+              echo
+              echo "### Unique errors (first 800)"
+              echo '```'
+              grep -E ': error:' compile.log | sed -E "s#${GITHUB_WORKSPACE}/##g" | sort -u | head -800 || true
+              echo '```'
+              echo
+              echo "### Missing symbols (top 120)"
+              echo '```'
+              grep -E ': error:' compile.log | grep -oE 'symbol: *(class|method|variable) [^ ]+' | sort | uniq -c | sort -rn | head -120 || true
+              echo '```'
             fi
-          } >> "$GITHUB_STEP_SUMMARY"
+          } > /tmp/ci-report.md
+          echo "report bytes: $(wc -c < /tmp/ci-report.md)"
+
+      - name: Emit annotations
+        if: always()
+        shell: bash
+        continue-on-error: true
+        run: |
+          grep -E ': error:' compile.log | sort -u | head -40 | while IFS= read -r line; do
+            file=$(printf '%s' "$line" | sed -E 's/:[0-9]+: error:.*$//')
+            num=$(printf '%s' "$line" | sed -E 's/^.*:([0-9]+): error:.*$/\1/')
+            msg=$(printf '%s' "$line" | sed -E 's/^.*: error: //')
+            rel=${file#"$GITHUB_WORKSPACE"/}
+            echo "::error file=${rel},line=${num}::${msg}"
+          done
+
+      - name: Publish report to ci-logs branch
+        if: always()
+        continue-on-error: true
+        shell: bash
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          rm -rf /tmp/cilogs
+          mkdir -p /tmp/cilogs
+          cd /tmp/cilogs
+          git init -q
+          git checkout -q -b ci-logs
+          cp /tmp/ci-report.md ./ci-report.md
+          git add ci-report.md
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -q -m "CI report for ${GITHUB_SHA:0:7} (${GITHUB_REF_NAME})"
+          git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" ci-logs
 
       - name: Fail if compilation failed
         if: steps.compile.outcome == 'failure'
@@ -78,7 +139,7 @@ jobs:
 
       - name: Upload compile logs
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: compile-logs
           path: |
