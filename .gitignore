@@ -122,6 +122,7 @@ runs/
 # Local 26.1.2 porting scratch space (helper scripts are kept, their output is not)
 Tools/_extracted/
 Tools/_tpl/
+Tools/_vendor_src/
 Tools/*.txt
 Tools/*.rc
 Tools/*.out

@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-    id 'net.fabricmc.fabric-loom'
+    id 'net.fabricmc.fabric-loom-remap'
 }
 
 base {
@@ -40,6 +40,10 @@ sourceSets {
     }
 }
 
+configurations {
+    sableCompanionRuntimeCompat
+}
+
 configurations.configureEach {
     resolutionStrategy.capabilitiesResolution.withCapability('org.lz4:lz4-java') {
         select('at.yawk.lz4:lz4-java:1.11.0')
@@ -47,6 +51,10 @@ configurations.configureEach {
 }
 
 loom {
+    mixin {
+        useLegacyMixinAp = true
+        defaultRefmapName = 'sable.refmap.json'
+    }
     accessWidenerPath = file('src/main/resources/sable.accesswidener')
     mods {
         sable { sourceSet sourceSets.main }
@@ -67,22 +75,30 @@ loom {
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.layered { officialMojangMappings() }
 
-    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    compileOnly "maven.modrinth:sodium:${sodium_version}"
-    compileOnly("maven.modrinth:scalablelux:${scalablelux_version}") {
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    modCompileOnly "maven.modrinth:sodium:${sodium_version}"
+    modCompileOnly("maven.modrinth:scalablelux:${scalablelux_version}") {
         transitive = false
     }
     if (project.findProperty('scalablelux_runtime') == 'true') {
-        localRuntime("maven.modrinth:scalablelux:${scalablelux_version}") {
+        modLocalRuntime("maven.modrinth:scalablelux:${scalablelux_version}") {
             transitive = false
         }
     }
 
     include(implementation('org.apache.maven:maven-artifact:3.8.5'))
     include(implementation('at.yawk.lz4:lz4-java:1.11.0'))
-    include(implementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forgeconfigapiport_version}"))
+    compileOnly("dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:${sable_companion_version}")
+    localRuntime("dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:${sable_companion_version}") {
+        transitive = false
+    }
+    sableCompanionRuntimeCompat("dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:${sable_companion_version}") {
+        transitive = false
+    }
+    include(modImplementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forgeconfigapiport_version}"))
 }
 
 processResources {
@@ -98,7 +114,8 @@ processResources {
             minecraft_version        : minecraft_version,
             fabric_loader_version    : fabric_loader_version,
             fabric_version           : fabric_version,
-            sodium_version           : sodium_mod_version
+            sodium_version           : sodium_mod_version,
+            sable_companion_version  : sable_companion_version
     ]
 
     filesMatching(['fabric.mod.json', '*.mixins.json']) { expand properties }
@@ -112,8 +129,10 @@ tasks.withType(JavaCompile).configureEach {
 jar {
     from(rootProject.file('LICENSE.md')) { rename { 'LICENSE-aeronautics.md' } }
     from(project.file('LICENSE.md')) { rename { 'LICENSE-sable.md' } }
-    // sable-companion has no 26.1 artifact, so it is vendored under
-    // src/main/java/dev/ryanhcode/sable/companion and carries its own license.
-    from(project.file('LICENSE-sable-companion.md')) { rename { 'LICENSE-sable-companion.md' } }
+    from({ configurations.sableCompanionRuntimeCompat.collect { zipTree(it) } }) {
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/*.mods.toml'
+        exclude 'META-INF/services/dev.ryanhcode.sable.companion.SableCompanion'
+    }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
