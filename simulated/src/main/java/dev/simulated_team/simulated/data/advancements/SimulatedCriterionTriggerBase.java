@@ -1,7 +1,6 @@
 package dev.simulated_team.simulated.data.advancements;
 
 import com.google.common.collect.Maps;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.resources.Identifier;
@@ -14,7 +13,6 @@ import java.util.*;
 import java.util.function.Supplier;
 
 @ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
 public abstract class SimulatedCriterionTriggerBase<T extends SimulatedCriterionTriggerBase.Instance> implements CriterionTrigger<T> {
 
     private final Identifier id;

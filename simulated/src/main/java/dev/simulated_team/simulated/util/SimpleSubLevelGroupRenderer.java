@@ -17,7 +17,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.PerspectiveProjectionMatrixBuffer;
+import net.minecraft.client.renderer.ProjectionMatrixBuffer;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
@@ -28,7 +28,7 @@ import java.util.Collection;
 
 public class SimpleSubLevelGroupRenderer {
     private static final LevelPerspectiveCamera CAMERA = new LevelPerspectiveCamera();
-    private static final PerspectiveProjectionMatrixBuffer PROJECTION = new PerspectiveProjectionMatrixBuffer("Simulated diagram projection");
+    private static final ProjectionMatrixBuffer PROJECTION = new ProjectionMatrixBuffer("Simulated diagram projection");
     private static final Matrix4f TRANSFORM = new Matrix4f();
     public static boolean RENDERING_SIMPLE = false;
 
