@@ -58,11 +58,11 @@ public final class SableFabric implements ModInitializer {
 
     private static <T extends SableTCPPacket> void registerPacket(final SableTCPPackets.Entry<T> entry) {
         if (entry.clientbound()) {
-            PayloadTypeRegistry.playS2C().register(entry.type(), entry.codec());
+            PayloadTypeRegistry.clientboundPlay().register(entry.type(), entry.codec());
             return;
         }
 
-        PayloadTypeRegistry.playC2S().register(entry.type(), entry.codec());
+        PayloadTypeRegistry.serverboundPlay().register(entry.type(), entry.codec());
         ServerPlayNetworking.registerGlobalReceiver(entry.type(),
                 (payload, context) -> payload.handle(new FabricSablePacketContext(context.player())));
     }

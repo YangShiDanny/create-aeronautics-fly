@@ -16,7 +16,7 @@ public class SimClient extends ConfigBase {
     }
 
     private static class Comments {
-        static String itemConfig = "Settings of Simulated Items";
-        static String blockConfig = "Settings of Simulated Blocks";
+        static String itemConfig = "Properties of Simulated Items";
+        static String blockConfig = "Properties of Simulated Blocks";
     }
 }

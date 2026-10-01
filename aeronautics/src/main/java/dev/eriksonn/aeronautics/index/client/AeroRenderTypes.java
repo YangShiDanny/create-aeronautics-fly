@@ -8,11 +8,11 @@ import dev.eriksonn.aeronautics.Aeronautics;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public final class AeroRenderTypes {
-    public static final ResourceLocation LEVITITE_SHADER = Aeronautics.path("levitite/levitite");
-    private static final ResourceLocation FIRE_PALETTE =
+    public static final Identifier LEVITITE_SHADER = Aeronautics.path("levitite/levitite");
+    private static final Identifier FIRE_PALETTE =
             Aeronautics.path("textures/effects/fire_palette.png");
 
     private static final RenderPipeline BURNER_FLAME_PIPELINE =

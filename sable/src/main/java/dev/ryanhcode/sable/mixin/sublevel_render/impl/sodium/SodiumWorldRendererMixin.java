@@ -17,7 +17,7 @@ import net.caffeinemc.mods.sodium.client.render.chunk.ChunkRenderMatrices;
 import net.caffeinemc.mods.sodium.client.render.viewport.Viewport;
 import net.caffeinemc.mods.sodium.client.util.FogParameters;
 import net.fabricmc.fabric.api.renderer.v1.Renderer;
-import net.fabricmc.fabric.api.renderer.v1.render.RenderLayerHelper;
+import net.fabricmc.fabric.api.renderer.v1.render.ChunkSectionLayerHelper;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.PrioritizeChunkUpdates;
@@ -164,7 +164,7 @@ public abstract class SodiumWorldRendererMixin {
                     cameraX,
                     cameraY,
                     cameraZ,
-                    RenderLayerHelper.movingDelegate(bufferSource),
+                    ChunkSectionLayerHelper.movingDelegate(bufferSource),
                     bufferSource
             );
             final SubLevelRenderData renderData = subLevel.getRenderData();

@@ -19,7 +19,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider.TranslationBuilder;
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,7 +30,7 @@ import com.tterrag.registrate.util.nullness.NonnullType;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -40,7 +40,7 @@ import net.minecraft.world.level.block.Block;
 public class RegistrateLangProvider extends BaseLangProvider implements RegistrateProvider {
 
     private static class AccessibleLanguageProvider extends BaseLangProvider {
-        public AccessibleLanguageProvider(FabricDataOutput output, String locale, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        public AccessibleLanguageProvider(FabricPackOutput output, String locale, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(output, locale, registryLookup);
         }
     }
@@ -49,7 +49,7 @@ public class RegistrateLangProvider extends BaseLangProvider implements Registra
 
     private final AccessibleLanguageProvider upsideDown;
 
-    public RegistrateLangProvider(AbstractRegistrate<?> owner, FabricDataOutput packOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    public RegistrateLangProvider(AbstractRegistrate<?> owner, FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(packOutput, "en_us", registryLookup);
         this.owner = owner;
         this.upsideDown = new AccessibleLanguageProvider(packOutput, "en_ud", registryLookup);
@@ -81,7 +81,7 @@ public class RegistrateLangProvider extends BaseLangProvider implements Registra
     public <T> String getAutomaticName(NonNullSupplier<? extends T> sup, ResourceKey<? extends Registry<T>> registry) {
         return toEnglishName(BuiltInRegistries.REGISTRY.getOptional(registry.location())
                 .map(holder -> ((Registry<T>) holder).getKey(sup.get()))
-                .orElse(ResourceLocation.fromNamespaceAndPath(owner.getModid(), "entry")).getPath());
+                .orElse(Identifier.fromNamespaceAndPath(owner.getModid(), "entry")).getPath());
     }
 
     public void addBlock(NonNullSupplier<? extends Block> block) {

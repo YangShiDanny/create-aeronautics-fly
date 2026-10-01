@@ -1,8 +1,13 @@
 {
-  "required": true,
-  "package": "dev.ryanhcode.offroad.fabric.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "mixins": [],
-  "client": [],
-  "injectors": { "defaultRequire": 1 }
+    "required": true,
+    "package": "dev.ryanhcode.offroad.fabric.mixin",
+    "compatibilityLevel": "JAVA_25",
+    "mixins": [],
+    "client": [],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "overwrites": {
+        "requireAnnotations": true
+    }
 }

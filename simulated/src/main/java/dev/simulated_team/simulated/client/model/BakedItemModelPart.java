@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.item.ModelRenderProperties;
 import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ResolvedModel;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.joml.Vector3f;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public record BakedItemModelPart(
         ModelRenderProperties properties,
         Supplier<Vector3f[]> extents
 ) {
-    public static BakedItemModelPart bake(final ModelBaker baker, final ResourceLocation id) {
+    public static BakedItemModelPart bake(final ModelBaker baker, final Identifier id) {
         final ResolvedModel model = baker.getModel(id);
         final TextureSlots textures = model.getTopTextureSlots();
         final List<BakedQuad> quads = model.bakeTopGeometry(textures, baker, BlockModelRotation.X0_Y0).getAll();

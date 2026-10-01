@@ -13,14 +13,14 @@ import com.tterrag.registrate.util.nullness.*;
 import io.github.fabricators_of_create.porting_lib.models.generators.BlockStateProvider;
 import io.github.fabricators_of_create.porting_lib.util.DeferredHolder;
 import net.fabricmc.api.EnvType;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ChunkSectionLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -136,7 +136,7 @@ public class BlockBuilder<T extends Block, P> extends AbstractBuilder<Block, T, 
 
     protected void registerLayers(T entry) {
         EnvExecutor.runWhenOn(EnvType.CLIENT, () -> () ->
-                BlockRenderLayerMap.putBlock(entry, toChunkSectionLayer(renderLayer.get().get())));
+                ChunkSectionLayerMap.putBlock(entry, toChunkSectionLayer(renderLayer.get().get())));
     }
 
     private static ChunkSectionLayer toChunkSectionLayer(Object layer) {
@@ -365,7 +365,7 @@ public class BlockBuilder<T extends Block, P> extends AbstractBuilder<Block, T, 
         @NotNull BlockBehaviour.Properties properties = this.initialProperties.get();
         properties = propertiesCallback.apply(properties);
         properties.setId(ResourceKey.create(Registries.BLOCK,
-                ResourceLocation.fromNamespaceAndPath(getOwner().getModid(), getName())));
+                Identifier.fromNamespaceAndPath(getOwner().getModid(), getName())));
         return factory.apply(properties);
     }
 

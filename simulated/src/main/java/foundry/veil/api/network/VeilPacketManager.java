@@ -55,7 +55,7 @@ public final class VeilPacketManager {
             final StreamCodec<? super RegistryFriendlyByteBuf, T> codec,
             final PacketHandler<ClientPacketContext, T> handler,
             final boolean optional) {
-        PayloadTypeRegistry.playS2C().register(id, codec);
+        PayloadTypeRegistry.clientboundPlay().register(id, codec);
         CLIENTBOUND.put(id, new ClientRegistration<>(id, handler));
     }
 
@@ -71,7 +71,7 @@ public final class VeilPacketManager {
             final StreamCodec<? super RegistryFriendlyByteBuf, T> codec,
             final PacketHandler<ServerPacketContext, T> handler,
             final boolean optional) {
-        PayloadTypeRegistry.playC2S().register(id, codec);
+        PayloadTypeRegistry.serverboundPlay().register(id, codec);
         ServerPlayNetworking.registerGlobalReceiver(id,
                 (payload, context) -> handler.handlePacket(payload, new FabricServerPacketContext(context.player())));
     }

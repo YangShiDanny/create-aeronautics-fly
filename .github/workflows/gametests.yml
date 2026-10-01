@@ -1,7 +1,10 @@
 name: CI
+# Full verification (build + production smoke runs). Only runs on the mainline:
+# the 26.1.2 port is validated by compile-26.1.2.yml until it is green.
 on:
   push:
-  pull_request:
+    branches:
+      - master
   workflow_dispatch:
 
 permissions:

@@ -21,7 +21,7 @@ public class SimServer extends ConfigBase {
 
     private static class Comments {
         static String kinetics = "Parameters and abilities of Simulated's kinetic mechanisms";
-        static String assembly = "Settings for sub-level assembly";
+        static String assembly = "Properties for sub-level assembly";
         static String physics = "Parameters related to the physics of Simulated Contraptions";
         static String blockConfig = "Parameters and abilities of Simulated Blocks";
         static String equipmentConfig = "Equipment and gadgets added by Simulated";

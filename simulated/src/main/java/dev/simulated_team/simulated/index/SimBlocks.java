@@ -71,7 +71,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.BlockItem;
@@ -580,7 +580,7 @@ public class SimBlocks {
                     .addLayer(() -> RenderType::cutoutMipped)
                     .blockstate((c, p) -> p.getVariantBuilder(c.get()).forAllStates(state -> {
                         final String suffix = state.getValue(AnalogTransmissionBlock.POWERED) ? "_on" : "";
-                        final ResourceLocation path = Simulated.path("block/" + c.getName() + "/block" + suffix);
+                        final Identifier path = Simulated.path("block/" + c.getName() + "/block" + suffix);
                         final Direction.Axis axis = state.getValue(AnalogTransmissionBlock.AXIS);
                         return ConfiguredModel.builder()
                                 .modelFile(p.models().getExistingFile(path))
@@ -819,9 +819,9 @@ public class SimBlocks {
                         final var model = p.models()
                                 .withExistingParent(colorName + "_symmetric_sail",
                                         p.modLoc("block/symmetric_sail/block"))
-                                .texture("0", ResourceLocation.fromNamespaceAndPath(Create.MOD_ID, "block/sail/canvas_" + colorName))
+                                .texture("0", Identifier.fromNamespaceAndPath(Create.MOD_ID, "block/sail/canvas_" + colorName))
                                 .texture("1", p.modLoc("block/symmetric_sail/side_" + colorName))
-                                .texture("particle", ResourceLocation.fromNamespaceAndPath(Create.MOD_ID, "block/sail/canvas_" + colorName));
+                                .texture("particle", Identifier.fromNamespaceAndPath(Create.MOD_ID, "block/sail/canvas_" + colorName));
                         SimBlockStateService.INSTANCE.genericModelBuilder(
                                 c,
                                 p,

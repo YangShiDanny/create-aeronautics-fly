@@ -10,17 +10,17 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
+import net.fabricmc.fabric.api.client.rendering.v1.ChunkSectionLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class AeronauticsFabricClient implements ClientModInitializer {
     private static final int PRODUCTION_SMOKE_REQUIRED_TICKS = 20;
-    private static final ResourceLocation LEVITITE_BLEND_STILL = Aeronautics.path("fluid/levitite_blend_still");
-    private static final ResourceLocation LEVITITE_BLEND_FLOW = Aeronautics.path("fluid/levitite_blend_flow");
+    private static final Identifier LEVITITE_BLEND_STILL = Aeronautics.path("fluid/levitite_blend_still");
+    private static final Identifier LEVITITE_BLEND_FLOW = Aeronautics.path("fluid/levitite_blend_flow");
     private static final AtomicInteger PRODUCTION_SMOKE_TICKS = new AtomicInteger();
 
     @Override
@@ -34,21 +34,21 @@ public final class AeronauticsFabricClient implements ClientModInitializer {
                 FabricAeroFluids.LEVITITE_BLEND.getSource(),
                 FabricAeroFluids.LEVITITE_BLEND.get(),
                 fluidRenderer);
-        BlockRenderLayerMap.putFluids(ChunkSectionLayer.TRANSLUCENT,
+        ChunkSectionLayerMap.putFluids(ChunkSectionLayer.TRANSLUCENT,
                 FabricAeroFluids.LEVITITE_BLEND.getSource(),
                 FabricAeroFluids.LEVITITE_BLEND.get());
-        BlockRenderLayerMap.putBlocks(ChunkSectionLayer.TRANSLUCENT,
+        ChunkSectionLayerMap.putBlocks(ChunkSectionLayer.TRANSLUCENT,
                 AeroBlocks.LEVITITE.get(), AeroBlocks.PEARLESCENT_LEVITITE.get());
-        BlockRenderLayerMap.putBlock(
+        ChunkSectionLayerMap.putBlock(
                 AeroBlocks.HOT_AIR_BURNER.get(),
                 ChunkSectionLayer.CUTOUT_MIPPED);
 
         AeronauticsClient.init();
 
-        WorldRenderEvents.START_MAIN.register(
+        LevelRenderEvents.START_MAIN.register(
                 context -> IrisBurnerFlameRenderQueue.beginWorldFrame()
         );
-        WorldRenderEvents.END_MAIN.register(
+        LevelRenderEvents.END_MAIN.register(
                 context -> IrisBurnerFlameRenderQueue.finishWorldFrameCollection()
         );
         ClientTickEvents.START_CLIENT_TICK.register(client -> AeronauticsClientEvents.clientLevelTick(false));

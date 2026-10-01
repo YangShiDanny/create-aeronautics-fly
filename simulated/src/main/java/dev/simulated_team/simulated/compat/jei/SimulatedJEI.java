@@ -13,7 +13,7 @@ import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IIngredientAliasRegistration;
 import mezz.jei.api.registration.IModInfoRegistration;
 import mezz.jei.library.ingredients.itemStacks.TypedItemStack;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -24,10 +24,10 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 public class SimulatedJEI implements IModPlugin {
 
-    private static final ResourceLocation ID = Simulated.path("jei_plugin");
+    private static final Identifier ID = Simulated.path("jei_plugin");
 
     @Override
-    public ResourceLocation getPluginUid() {
+    public Identifier getPluginUid() {
         return ID;
     }
 

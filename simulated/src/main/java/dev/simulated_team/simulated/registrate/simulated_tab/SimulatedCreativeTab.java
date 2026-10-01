@@ -14,7 +14,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +29,7 @@ import java.util.function.Consumer;
 
 public class SimulatedCreativeTab {
 	public static int CURRENT_ROW = 0;
-	public static final Object2IntOpenHashMap<ResourceLocation> SECTION_Y_VALUES = new Object2IntOpenHashMap<>();
+	public static final Object2IntOpenHashMap<Identifier> SECTION_Y_VALUES = new Object2IntOpenHashMap<>();
 
 	public static void renderBanners(final CreativeModeInventoryScreen screen, final GuiGraphics graphics, int mouseX, int mouseY) {
 		final Matrix3x2fStack ps = graphics.pose();
@@ -41,7 +41,7 @@ public class SimulatedCreativeTab {
 		final List<SimulatedSection> sections = SimResourceManagers.SIMULATED_SECTION.sortedEntries();
 
 		for (final SimulatedSection section : sections) {
-			ResourceLocation id = SimResourceManagers.SIMULATED_SECTION.getId(section);
+			Identifier id = SimResourceManagers.SIMULATED_SECTION.getId(section);
 			int yValue = SECTION_Y_VALUES.getInt(id);
 			final int sectionRow = (yValue - CURRENT_ROW);
 			if(sectionRow < 0 || sectionRow > 4) continue;
@@ -52,7 +52,7 @@ public class SimulatedCreativeTab {
 			int w = 162;
 			int h = 18;
 
-			ResourceLocation bannerTexture = section.sprite();
+			Identifier bannerTexture = section.sprite();
 
 			if(section.animateOnHover()) {
 				boolean isHovering =
@@ -101,7 +101,7 @@ public class SimulatedCreativeTab {
 		for (final Item item : tabItems) {
 			final ItemStack stack = item.getDefaultInstance();
 
-			final ResourceLocation sectionId = SimulatedRegistrate.sectionOf(item);
+			final Identifier sectionId = SimulatedRegistrate.sectionOf(item);
 			if(sectionId == null)
 				continue;
 
@@ -131,7 +131,7 @@ public class SimulatedCreativeTab {
 				}
 			}
 
-			ResourceLocation id = SimResourceManagers.SIMULATED_SECTION.getId(key);
+			Identifier id = SimResourceManagers.SIMULATED_SECTION.getId(key);
 			SECTION_Y_VALUES.put(id, y);
 			final int rowCount = (int) Math.ceil(itemCount / 9.0f);
 			y += rowCount + 1;
@@ -150,7 +150,7 @@ public class SimulatedCreativeTab {
 		}
 	}
 
-    public static void setPlaying(ResourceLocation resourceLocation, boolean playing) {
+    public static void setPlaying(Identifier resourceLocation, boolean playing) {
         // Animated creative-tab sprites are left to the vanilla ticker on Fabric.
     }
 

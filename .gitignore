@@ -118,3 +118,12 @@ runs/
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+
+# Local 26.1.2 porting scratch space (helper scripts are kept, their output is not)
+Tools/_extracted/
+Tools/_tpl/
+Tools/*.txt
+Tools/*.rc
+Tools/*.out
+Tools/*.err
+.workbuddy/

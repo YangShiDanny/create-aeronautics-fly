@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.ryanhcode.sable.render.SubLevelDynamicLights;
 import dev.ryanhcode.sable.sublevel.ClientSubLevel;
 import it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap;
-import net.fabricmc.fabric.api.renderer.v1.render.BlockVertexConsumerProvider;
+import net.fabricmc.fabric.api.renderer.v1.render.BlockMultiBufferSource;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -26,7 +26,7 @@ import java.util.Map;
  * receive the same parent-world light value.</p>
  */
 public final class SubLevelLightVertexConsumerProvider
-        implements BlockVertexConsumerProvider, MultiBufferSource {
+        implements BlockMultiBufferSource, MultiBufferSource {
 
     private static final double LIGHT_CELL_CENTER = 0.5;
 
@@ -35,7 +35,7 @@ public final class SubLevelLightVertexConsumerProvider
     private final double cameraY;
     private final double cameraZ;
     private final SubLevelDynamicLights.OwnLightMask ownLightMask;
-    private final BlockVertexConsumerProvider blockDelegate;
+    private final BlockMultiBufferSource blockDelegate;
     private final MultiBufferSource blockEntityDelegate;
     private final Map<VertexConsumer, SubLevelLightVertexConsumer> consumers = new IdentityHashMap<>();
     private final Long2IntOpenHashMap lightCache = new Long2IntOpenHashMap();
@@ -47,7 +47,7 @@ public final class SubLevelLightVertexConsumerProvider
             final double cameraX,
             final double cameraY,
             final double cameraZ,
-            final BlockVertexConsumerProvider blockDelegate,
+            final BlockMultiBufferSource blockDelegate,
             final MultiBufferSource blockEntityDelegate
     ) {
         this.level = level;

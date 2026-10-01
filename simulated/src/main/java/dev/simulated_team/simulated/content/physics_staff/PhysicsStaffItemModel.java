@@ -25,7 +25,7 @@ import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.item.ItemStackRenderState.LayerRenderState;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.client.resources.model.ModelBaker;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.ItemOwner;
 import net.minecraft.world.entity.player.Player;
@@ -42,14 +42,14 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 public final class PhysicsStaffItemModel implements ItemModel, SpecialModelRenderer<PhysicsStaffItemModel.RenderData> {
-    public static final ResourceLocation ID = Simulated.path("model/creative_physics_staff");
-    private static final ResourceLocation ITEM = Simulated.path("item/creative_physics_staff/item");
-    private static final ResourceLocation CORE = Simulated.path("item/creative_physics_staff/core");
-    private static final ResourceLocation CORE_GLOW = Simulated.path("item/creative_physics_staff/core_glow");
-    private static final ResourceLocation RING = Simulated.path("item/creative_physics_staff/ring");
-    private static final ResourceLocation SIGMA = Simulated.path("item/creative_physics_staff/sigma");
-    private static final ResourceLocation INNER_CUBE = Simulated.path("item/creative_physics_staff/inner_cube");
-    private static final ResourceLocation OUTER_CUBE = Simulated.path("item/creative_physics_staff/outer_cube");
+    public static final Identifier ID = Simulated.path("model/creative_physics_staff");
+    private static final Identifier ITEM = Simulated.path("item/creative_physics_staff/item");
+    private static final Identifier CORE = Simulated.path("item/creative_physics_staff/core");
+    private static final Identifier CORE_GLOW = Simulated.path("item/creative_physics_staff/core_glow");
+    private static final Identifier RING = Simulated.path("item/creative_physics_staff/ring");
+    private static final Identifier SIGMA = Simulated.path("item/creative_physics_staff/sigma");
+    private static final Identifier INNER_CUBE = Simulated.path("item/creative_physics_staff/inner_cube");
+    private static final Identifier OUTER_CUBE = Simulated.path("item/creative_physics_staff/outer_cube");
 
     private final BakedItemModelPart item;
     private final BakedItemModelPart core;

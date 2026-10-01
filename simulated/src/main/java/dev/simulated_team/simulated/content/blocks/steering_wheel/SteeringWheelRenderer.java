@@ -24,7 +24,7 @@ import net.minecraft.client.renderer.block.model.SimpleModelWrapper;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -87,7 +87,7 @@ public class SteeringWheelRenderer extends KineticBlockEntityRenderer<SteeringWh
 
     public static SimpleModelWrapper generateModel(final SimpleModelWrapper template, final BlockState planksBlockState) {
         final Block planksBlock = planksBlockState.getBlock();
-        final ResourceLocation id = RegisteredObjectsHelper.getKeyOrThrow(planksBlock);
+        final Identifier id = RegisteredObjectsHelper.getKeyOrThrow(planksBlock);
         final String wood = plankStateToWoodName(planksBlockState);
 
         if (wood == null)
@@ -106,7 +106,7 @@ public class SteeringWheelRenderer extends KineticBlockEntityRenderer<SteeringWh
     @Nullable
     private static String plankStateToWoodName(final BlockState planksBlockState) {
         final Block planksBlock = planksBlockState.getBlock();
-        final ResourceLocation id = RegisteredObjectsHelper.getKeyOrThrow(planksBlock);
+        final Identifier id = RegisteredObjectsHelper.getKeyOrThrow(planksBlock);
         final String path = id.getPath();
 
         if (path.endsWith("_planks")) // Covers most wood types

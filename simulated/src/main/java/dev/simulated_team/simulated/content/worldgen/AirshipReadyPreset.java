@@ -1,12 +1,12 @@
 package dev.simulated_team.simulated.content.worldgen;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.GameRules;
 import org.jetbrains.annotations.Nullable;
 
 public class AirshipReadyPreset extends SimulatedWorldPreset {
-	public AirshipReadyPreset(final ResourceLocation id, @Nullable final Component description) {
+	public AirshipReadyPreset(final Identifier id, @Nullable final Component description) {
 		super(id, description);
 	}
 

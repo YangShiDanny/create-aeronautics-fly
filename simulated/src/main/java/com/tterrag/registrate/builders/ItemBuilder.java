@@ -14,11 +14,11 @@ import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import io.github.fabricators_of_create.porting_lib.util.DeferredHolder;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.fabricmc.fabric.api.registry.CompostableRegistry;
+import net.fabricmc.fabric.api.registry.FuelValueEvents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import org.jetbrains.annotations.Nullable;
 
@@ -238,7 +238,7 @@ public class ItemBuilder<T extends Item, P> extends AbstractBuilder<Item, T, P, 
      * @param tick time in ticks for this item to burn in furnace.
      */
     public ItemBuilder<T, P> burnTime(int tick) {
-        onRegister(item -> FuelRegistryEvents.BUILD.register((builder, context) -> builder.add(item, tick)));
+        onRegister(item -> FuelValueEvents.BUILD.register((builder, context) -> builder.add(item, tick)));
         return this;
     }
 
@@ -247,7 +247,7 @@ public class ItemBuilder<T extends Item, P> extends AbstractBuilder<Item, T, P, 
      * @param chance chance for composter to increase one level when composting this item.
      */
     public ItemBuilder<T, P> compostable(float chance) {
-        CompostingChanceRegistry.INSTANCE.add(get().get(), chance);
+        CompostableRegistry.INSTANCE.add(get().get(), chance);
         return this;
     }
 
@@ -268,7 +268,7 @@ public class ItemBuilder<T extends Item, P> extends AbstractBuilder<Item, T, P, 
         Item.Properties properties = this.initialProperties.get();
         properties = propertiesCallback.apply(properties);
         properties.setId(ResourceKey.create(Registries.ITEM,
-                ResourceLocation.fromNamespaceAndPath(getOwner().getModid(), getName())));
+                Identifier.fromNamespaceAndPath(getOwner().getModid(), getName())));
         return factory.apply(properties);
     }
 

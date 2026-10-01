@@ -20,7 +20,7 @@ import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.item.ItemStackRenderState.LayerRenderState;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.client.resources.model.ModelBaker;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.ItemOwner;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -32,11 +32,11 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 public final class PlungerLauncherItemModel implements ItemModel, SpecialModelRenderer<PlungerLauncherItemModel.RenderData> {
-    public static final ResourceLocation ID = Simulated.path("model/plunger_launcher");
-    private static final ResourceLocation ITEM = Simulated.path("item/plunger_launcher/item");
-    private static final ResourceLocation BODY = Simulated.path("item/plunger_launcher/plunger_tether");
-    private static final ResourceLocation JOINT = Simulated.path("item/plunger_launcher/spool_joint");
-    private static final ResourceLocation SPOOL = Simulated.path("item/plunger_launcher/tether_spool");
+    public static final Identifier ID = Simulated.path("model/plunger_launcher");
+    private static final Identifier ITEM = Simulated.path("item/plunger_launcher/item");
+    private static final Identifier BODY = Simulated.path("item/plunger_launcher/plunger_tether");
+    private static final Identifier JOINT = Simulated.path("item/plunger_launcher/spool_joint");
+    private static final Identifier SPOOL = Simulated.path("item/plunger_launcher/tether_spool");
 
     private final BakedItemModelPart item;
     private final BakedItemModelPart body;

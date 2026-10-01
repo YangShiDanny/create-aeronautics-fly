@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.Sheets;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public final class SimRenderTypes {
 
@@ -208,7 +208,7 @@ public final class SimRenderTypes {
         return builder.build();
     }
 
-    private static RenderType.CompositeState compositeState(final ResourceLocation texture,
+    private static RenderType.CompositeState compositeState(final Identifier texture,
                                                             final boolean mipmap, final boolean lightmap) {
         final RenderType.CompositeState.CompositeStateBuilder builder = RenderType.CompositeState.builder();
         if (texture != null) {
@@ -296,7 +296,7 @@ public final class SimRenderTypes {
         return shadersActive ? Sheets.translucentItemSheet() : RenderTypes.itemGlowingTranslucent();
     }
 
-    public static RenderType spring(final ResourceLocation texture) {
+    public static RenderType spring(final Identifier texture) {
         // Use a vanilla pipeline so Iris can map the render type into shader packs.
         // The old Veil spring shader is not available in the 1.21.10 Fabric port.
         // SpringRenderer emits a second, inward-facing copy of the mesh itself;

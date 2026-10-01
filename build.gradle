@@ -1,6 +1,7 @@
 plugins {
     id 'base'
-    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}" apply false
+    // 26.1 is unobfuscated: the new plugin no longer remaps Minecraft or mods.
+    id 'net.fabricmc.fabric-loom' version "${loom_version}" apply false
 }
 
 group = 'dev.simulated_team'
@@ -79,7 +80,7 @@ tasks.register('build4In1Jar', Jar) {
     group = 'build'
     description = 'Builds one Fabric JAR containing Sable, Simulated, Offroad, and Aeronautics.'
     dependsOn generate4In1Metadata
-    dependsOn ':sable:remapJar', ':simulated:remapJar', ':offroad:remapJar', ':aeronautics:remapJar'
+    dependsOn ':sable:jar', ':simulated:jar', ':offroad:jar', ':aeronautics:jar'
 
     archiveFileName = "create-aeronautics-4in1-fabric-${minecraft_version}-${mod_version}.jar"
     destinationDirectory = layout.buildDirectory.dir('libs')
@@ -88,7 +89,7 @@ tasks.register('build4In1Jar', Jar) {
     reproducibleFileOrder = true
 
     from({
-        zipTree(project(':aeronautics').tasks.named('remapJar').get().archiveFile.get().asFile)
+        zipTree(project(':aeronautics').tasks.named('jar').get().archiveFile.get().asFile)
     }) {
         exclude 'fabric.mod.json'
         exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
@@ -97,7 +98,7 @@ tasks.register('build4In1Jar', Jar) {
 
     bundledModuleNames.each { moduleName ->
         from({
-            project(":${moduleName}").tasks.named('remapJar').get().archiveFile.get().asFile
+            project(":${moduleName}").tasks.named('jar').get().archiveFile.get().asFile
         }) {
             into 'META-INF/jars'
             rename { "${moduleName}.jar" }

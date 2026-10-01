@@ -29,7 +29,7 @@ import dev.simulated_team.simulated.compat.minecraft.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -379,8 +379,8 @@ public class LaunchedPlungerEntityRenderer extends EntityRenderer<LaunchedPlunge
     }
 
     @Override
-    public ResourceLocation getTextureLocation(final LaunchedPlungerEntity entity) {
-        return ResourceLocation.withDefaultNamespace("missing");
+    public Identifier getTextureLocation(final LaunchedPlungerEntity entity) {
+        return Identifier.withDefaultNamespace("missing");
     }
 
     @Override

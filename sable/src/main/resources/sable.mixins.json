@@ -1,8 +1,7 @@
 {
     "required": true,
     "package": "dev.ryanhcode.sable.mixin",
-    "refmap": "sable.refmap.json",
-    "compatibilityLevel": "JAVA_21",
+    "compatibilityLevel": "JAVA_25",
     "minVersion": "0.8",
     "plugin": "dev.ryanhcode.sable.plugin.SableMixinPlugin",
     "client": [
@@ -193,5 +192,8 @@
     ],
     "injectors": {
         "defaultRequire": 1
+    },
+    "overwrites": {
+        "requireAnnotations": true
     }
 }

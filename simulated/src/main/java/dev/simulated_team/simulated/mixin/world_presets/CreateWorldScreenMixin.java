@@ -8,7 +8,7 @@ import net.minecraft.client.gui.screens.worldselection.CreateWorldScreen;
 import net.minecraft.client.gui.screens.worldselection.WorldCreationUiState;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.dimension.end.EndDragonFight;
 import net.minecraft.world.level.levelgen.presets.WorldPreset;
@@ -41,7 +41,7 @@ public abstract class CreateWorldScreenMixin {
             return;
         }
 
-        final ResourceLocation location = key.get().location();
+        final Identifier location = key.get().location();
         final SimulatedWorldPreset simPreset = SimWorldPresets.PRESETS.get(location);
 
         if (simPreset != null) {

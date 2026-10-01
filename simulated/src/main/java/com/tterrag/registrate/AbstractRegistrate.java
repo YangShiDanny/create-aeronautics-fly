@@ -33,7 +33,7 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Table;
 import com.tterrag.registrate.providers.*;
 import io.github.fabricators_of_create.porting_lib.util.DeferredHolder;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.core.Registry;
@@ -42,7 +42,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType.EntityFactory;
 import net.minecraft.world.entity.MobCategory;
@@ -86,8 +86,8 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.DefaultedMappedRegistry;
 import net.minecraft.core.MappedRegistry;
@@ -123,7 +123,7 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
 
     private class Registration<R, T extends R> {
-        ResourceLocation name;
+        Identifier name;
         ResourceKey<? extends Registry<R>> type;
         NonNullSupplier<? extends T> creator;
         RegistryEntry<R, T> delegate;
@@ -131,7 +131,7 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
 
         List<NonNullConsumer<? super T>> callbacks = new ArrayList<>();
 
-        Registration(ResourceLocation name, ResourceKey<? extends Registry<R>> type, NonNullSupplier<? extends T> creator, NonNullFunction<DeferredHolder<R, T>, ? extends RegistryEntry<R, T>> entryFactory) {
+        Registration(Identifier name, ResourceKey<? extends Registry<R>> type, NonNullSupplier<? extends T> creator, NonNullFunction<DeferredHolder<R, T>, ? extends RegistryEntry<R, T>> entryFactory) {
             this.name = name;
             this.type = type;
             this.creator =  creator.lazy();
@@ -161,7 +161,7 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
             callbacks.add(callback);
         }
 
-        ResourceLocation getName() { return name; }
+        Identifier getName() { return name; }
         RegistryEntry<R, T> getDelegate() { return delegate; }
     }
 
@@ -229,7 +229,7 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
         registrationOrder.forEach(Registration::runCallbacks);
         registries.forEach(this::onRegisterLate);
         creativeModeTabModifiers.forEach((key, consumer) ->
-                ItemGroupEvents.modifyEntriesEvent(key).register(entries ->
+                CreativeModeTabEvents.modifyOutputEvent(key).register(entries ->
                         consumer.accept(
                                 new CreativeModeTabModifier(
                                         entries::getEnabledFeatures, entries::shouldShowOpRestrictedItems, entries::accept, entries::getContext
@@ -575,34 +575,34 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
     });
 
     /**
-     * Add a custom translation mapping using the vanilla style of ResourceLocation -&gt; translation key conversion.
+     * Add a custom translation mapping using the vanilla style of Identifier -&gt; translation key conversion.
      *
      * @param type
      *            Type of the object, this is used as a prefix (e.g. {@code ["block", "mymod:myblock"] -> "block.mymod.myblock"})
      * @param id
-     *            ID of the object, which will be converted to a lang key via {@link Util#makeDescriptionId(String, ResourceLocation)}
+     *            ID of the object, which will be converted to a lang key via {@link Util#makeDescriptionId(String, Identifier)}
      * @param localizedName
      *            (English) translation value
      * @return A {@link MutableComponent} representing the translated text
      */
-    public MutableComponent addLang(String type, ResourceLocation id, String localizedName) {
+    public MutableComponent addLang(String type, Identifier id, String localizedName) {
         return addRawLang(Util.makeDescriptionId(type, id), localizedName);
     }
 
     /**
-     * Add a custom translation mapping using the vanilla style of ResourceLocation -&gt; translation key conversion. Also appends a suffix to the key.
+     * Add a custom translation mapping using the vanilla style of Identifier -&gt; translation key conversion. Also appends a suffix to the key.
      *
      * @param type
      *            Type of the object, this is used as a prefix (e.g. {@code ["block", "mymod:myblock"] -> "block.mymod.myblock"})
      * @param id
-     *            ID of the object, which will be converted to a lang key via {@link Util#makeDescriptionId(String, ResourceLocation)}
+     *            ID of the object, which will be converted to a lang key via {@link Util#makeDescriptionId(String, Identifier)}
      * @param suffix
      *            A suffix which will be appended to the generated key (separated by a dot)
      * @param localizedName
      *            (English) translation value
      * @return A {@link MutableComponent} representing the translated text
      */
-    public MutableComponent addLang(String type, ResourceLocation id, String suffix, String localizedName) {
+    public MutableComponent addLang(String type, Identifier id, String suffix, String localizedName) {
         return addRawLang(Util.makeDescriptionId(type, id) + "." + suffix, localizedName);
     }
 
@@ -851,7 +851,7 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
      * @return A {@link RegistryEntry} that will hold the created entry after registration is complete
      */
     protected <R, T extends R> RegistryEntry<R, T> accept(String name, ResourceKey<? extends Registry<R>> type, Builder<R, T, ?, ?> builder, NonNullSupplier<? extends T> creator, NonNullFunction<DeferredHolder<R, T>, ? extends RegistryEntry<R, T>> entryFactory) {
-        Registration<R, T> reg = new Registration<>(ResourceLocation.fromNamespaceAndPath(modid, name), type, creator, entryFactory);
+        Registration<R, T> reg = new Registration<>(Identifier.fromNamespaceAndPath(modid, name), type, creator, entryFactory);
         log.trace(DebugMarkers.REGISTER, "Captured registration for entry {}:{} of type {}", getModid(), name, type.location());
         registerCallbacks.removeAll(Pair.of(name, type)).forEach(callback -> {
             @SuppressWarnings({ "unchecked", "null" })
@@ -871,8 +871,8 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
 
     @Beta
     public <R> ResourceKey<Registry<R>> makeRegistry(String name) {
-        FabricRegistryBuilder<R, MappedRegistry<R>> builder = FabricRegistryBuilder.createSimple(
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(getModid(), name))
+        FabricRegistryBuilder<R, MappedRegistry<R>> builder = FabricRegistryBuilder.create(
+                ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(getModid(), name))
         );
         return makeRegistry(builder);
     }
@@ -880,7 +880,7 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
     @Beta
     public <R> ResourceKey<Registry<R>> makeRegistry(String name, RegistryAttribute... attributes) {
         FabricRegistryBuilder<R, MappedRegistry<R>> builder = FabricRegistryBuilder
-                .createSimple(ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(getModid(), name)));
+                .create(ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(getModid(), name)));
         for (RegistryAttribute attribute : attributes) {
             builder.attribute(attribute);
         }
@@ -889,19 +889,19 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
 
     @Beta
     public <R> ResourceKey<Registry<R>> makeRegistry(String name, String defaultName) {
-        return makeRegistry(name, ResourceLocation.fromNamespaceAndPath(getModid(), defaultName));
+        return makeRegistry(name, Identifier.fromNamespaceAndPath(getModid(), defaultName));
     }
 
     @Beta
-    public <R> ResourceKey<Registry<R>> makeRegistry(String name, ResourceLocation defaultId) {
-        ResourceKey<Registry<R>> key = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(getModid(), name));
+    public <R> ResourceKey<Registry<R>> makeRegistry(String name, Identifier defaultId) {
+        ResourceKey<Registry<R>> key = ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(getModid(), name));
         FabricRegistryBuilder<R, DefaultedMappedRegistry<R>> builder = FabricRegistryBuilder.createDefaulted(key, defaultId);
         return makeRegistry(builder);
     }
 
     @Beta
-    public <R> ResourceKey<Registry<R>> makeRegistry(String name, ResourceLocation defaultId, RegistryAttribute... attributes) {
-        ResourceKey<Registry<R>> key = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(getModid(), name));
+    public <R> ResourceKey<Registry<R>> makeRegistry(String name, Identifier defaultId, RegistryAttribute... attributes) {
+        ResourceKey<Registry<R>> key = ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(getModid(), name));
         FabricRegistryBuilder<R, DefaultedMappedRegistry<R>> builder = FabricRegistryBuilder.createDefaulted(key, defaultId);
         for (RegistryAttribute attribute : attributes) {
             builder.attribute(attribute);
@@ -1023,11 +1023,11 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
         return fluid(self());
     }
 
-    public FluidBuilder<SimpleFlowableFluid.Flowing, S> fluid(ResourceLocation stillTexture, ResourceLocation flowingTexture) {
+    public FluidBuilder<SimpleFlowableFluid.Flowing, S> fluid(Identifier stillTexture, Identifier flowingTexture) {
         return fluid(self(), stillTexture, flowingTexture);
     }
 
-    public <T extends SimpleFlowableFluid> FluidBuilder<T, S> fluid(ResourceLocation stillTexture, ResourceLocation flowingTexture,
+    public <T extends SimpleFlowableFluid> FluidBuilder<T, S> fluid(Identifier stillTexture, Identifier flowingTexture,
             NonNullFunction<SimpleFlowableFluid.Properties, T> fluidFactory) {
         return fluid(self(), stillTexture, flowingTexture, fluidFactory);
     }
@@ -1036,11 +1036,11 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
         return fluid(self(), name);
     }
 
-    public FluidBuilder<SimpleFlowableFluid.Flowing, S> fluid(String name, ResourceLocation stillTexture, ResourceLocation flowingTexture) {
+    public FluidBuilder<SimpleFlowableFluid.Flowing, S> fluid(String name, Identifier stillTexture, Identifier flowingTexture) {
         return fluid(self(), name, stillTexture, flowingTexture);
     }
 
-    public <T extends SimpleFlowableFluid> FluidBuilder<T, S> fluid(String name, ResourceLocation stillTexture, ResourceLocation flowingTexture,
+    public <T extends SimpleFlowableFluid> FluidBuilder<T, S> fluid(String name, Identifier stillTexture, Identifier flowingTexture,
         NonNullFunction<SimpleFlowableFluid.Properties, T> fluidFactory) {
         return fluid(self(), name, stillTexture, flowingTexture, fluidFactory);
     }
@@ -1049,24 +1049,24 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
         return fluid(parent, currentName());
     }
 
-    public <P> FluidBuilder<SimpleFlowableFluid.Flowing, P> fluid(P parent, ResourceLocation stillTexture, ResourceLocation flowingTexture) {
+    public <P> FluidBuilder<SimpleFlowableFluid.Flowing, P> fluid(P parent, Identifier stillTexture, Identifier flowingTexture) {
         return fluid(parent, currentName(), stillTexture, flowingTexture);
     }
 
-    public <T extends SimpleFlowableFluid, P> FluidBuilder<T, P> fluid(P parent, ResourceLocation stillTexture, ResourceLocation flowingTexture,
+    public <T extends SimpleFlowableFluid, P> FluidBuilder<T, P> fluid(P parent, Identifier stillTexture, Identifier flowingTexture,
         NonNullFunction<SimpleFlowableFluid.Properties, T> fluidFactory) {
         return fluid(parent, currentName(), stillTexture, flowingTexture, fluidFactory);
     }
 
     public <P> FluidBuilder<SimpleFlowableFluid.Flowing, P> fluid(P parent, String name) {
-        return fluid(parent, name, ResourceLocation.fromNamespaceAndPath(getModid(), "block/" + currentName() + "_still"), ResourceLocation.fromNamespaceAndPath(getModid(), "block/" + currentName() + "_flow"));
+        return fluid(parent, name, Identifier.fromNamespaceAndPath(getModid(), "block/" + currentName() + "_still"), Identifier.fromNamespaceAndPath(getModid(), "block/" + currentName() + "_flow"));
     }
 
-    public <P> FluidBuilder<SimpleFlowableFluid.Flowing, P> fluid(P parent, String name, ResourceLocation stillTexture, ResourceLocation flowingTexture) {
+    public <P> FluidBuilder<SimpleFlowableFluid.Flowing, P> fluid(P parent, String name, Identifier stillTexture, Identifier flowingTexture) {
         return entry(name, callback -> FluidBuilder.create(this, parent, name, callback, stillTexture, flowingTexture));
     }
 
-    public <T extends SimpleFlowableFluid, P> FluidBuilder<T, P> fluid(P parent, String name, ResourceLocation stillTexture, ResourceLocation flowingTexture,
+    public <T extends SimpleFlowableFluid, P> FluidBuilder<T, P> fluid(P parent, String name, Identifier stillTexture, Identifier flowingTexture,
         NonNullFunction<SimpleFlowableFluid.Properties, T> fluidFactory) {
         return entry(name, callback -> FluidBuilder.create(this, parent, name, callback, stillTexture, flowingTexture, fluidFactory));
     }
@@ -1136,9 +1136,9 @@ public abstract class AbstractRegistrate<S extends AbstractRegistrate<S>> {
     }
 
     public <P> NoConfigBuilder<CreativeModeTab, CreativeModeTab, P> defaultCreativeTab(P parent, String name, Consumer<CreativeModeTab.Builder> config) {
-        this.defaultCreativeModeTab = ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(this.modid, name));
+        this.defaultCreativeModeTab = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(this.modid, name));
         return this.generic(parent, name, Registries.CREATIVE_MODE_TAB, () -> {
-            var builder = FabricItemGroup.builder()
+            var builder = FabricCreativeModeTab.builder()
                     .icon(() -> getAll(Registries.ITEM).stream().findFirst().map(ItemEntry::cast).map(ItemEntry::asStack).orElse(new ItemStack(Items.AIR)))
                     .title(this.addLang("itemGroup", this.defaultCreativeModeTab.location(), RegistrateLangProvider.toEnglishName(name)));
             config.accept(builder);

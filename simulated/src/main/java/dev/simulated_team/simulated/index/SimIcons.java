@@ -12,12 +12,12 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
 public class SimIcons extends AllIcons {
-    public static final ResourceLocation ICON_ATLAS = Simulated.path("textures/gui/icons.png");
+    public static final Identifier ICON_ATLAS = Simulated.path("textures/gui/icons.png");
     public static final int ICON_ATLAS_SIZE = 64;
 
     private static int x = 0, y = -1;
